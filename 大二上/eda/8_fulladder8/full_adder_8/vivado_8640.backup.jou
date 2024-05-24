@@ -1,0 +1,61 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Mar 17 22:29:20 2023
+# Process ID: 8640
+# Current directory: E:/eda/8_fulladder8/full_adder_8
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent960 E:\eda\8_fulladder8\full_adder_8\full_adder_8.xpr
+# Log file: E:/eda/8_fulladder8/full_adder_8/vivado.log
+# Journal file: E:/eda/8_fulladder8/full_adder_8\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/eda/8_fulladder8/full_adder_8/full_adder_8.xpr
+update_compile_order -fileset sources_1
+set_property part xc7a100ticsg324-1L [current_project]
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+place_ports {iData_a[0]} J15
+place_ports {iData_a[1]} L16
+place_ports {iData_a[2]} M13
+place_ports {iData_a[3]} R15
+place_ports {iData_a[4]} R17
+place_ports {iData_a[5]} T18
+place_ports {iData_a[6]} U18
+place_ports {iData_a[7]} R13
+place_ports {iData_b[0]} T8
+place_ports {iData_b[1]} U8
+place_ports {iData_b[2]} R16
+place_ports {iData_b[3]} T13
+place_ports {iData_b[4]} H6
+set_property package_pin "" [get_ports [list  {iData_b[5]}]]
+place_ports {iData_b[5]} U12
+place_ports {iData_b[6]} U11
+place_ports {iData_b[7]} V10
+place_ports {oData[0]} H17
+place_ports {oData[1]} K15
+place_ports {oData[2]} J13
+place_ports {oData[3]} N15
+place_ports {oData[3]} N14
+place_ports {oData[4]} R18
+place_ports {oData[5]} V17
+place_ports {oData[6]} U17
+place_ports {oData[7]} U16
+set_property IOSTANDARD LVCMOS18 [get_ports [list {iData_a[7]} {iData_a[6]} {iData_a[5]} {iData_a[4]} {iData_a[3]} {iData_a[2]} {iData_a[1]} {iData_a[0]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {iData_b[7]} {iData_b[6]} {iData_b[5]} {iData_b[4]} {iData_b[3]} {iData_b[2]} {iData_b[1]} {iData_b[0]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {oData[7]} {oData[6]} {oData[5]} {oData[4]} {oData[3]} {oData[2]} {oData[1]} {oData[0]}]]
+file mkdir E:/eda/8_fulladder8/full_adder_8/full_adder_8.srcs/constrs_1/new
+close [ open E:/eda/8_fulladder8/full_adder_8/full_adder_8.srcs/constrs_1/new/FULLADDER.xdc w ]
+add_files -fileset constrs_1 E:/eda/8_fulladder8/full_adder_8/full_adder_8.srcs/constrs_1/new/FULLADDER.xdc
+set_property target_constrs_file E:/eda/8_fulladder8/full_adder_8/full_adder_8.srcs/constrs_1/new/FULLADDER.xdc [current_fileset -constrset]
+save_constraints -force
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+place_ports oC V16
+set_property IOSTANDARD LVCMOS18 [get_ports [list oC]]
+save_constraints -force
+reset_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1

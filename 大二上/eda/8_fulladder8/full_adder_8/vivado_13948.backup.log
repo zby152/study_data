@@ -1,0 +1,73 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Mar 17 23:23:39 2023
+# Process ID: 13948
+# Current directory: E:/eda/8_fulladder8/full_adder_8
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12452 E:\eda\8_fulladder8\full_adder_8\full_adder_8.xpr
+# Log file: E:/eda/8_fulladder8/full_adder_8/vivado.log
+# Journal file: E:/eda/8_fulladder8/full_adder_8\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/eda/8_fulladder8/full_adder_8/full_adder_8.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/vivado/2017.4/data/ip'.
+update_compile_order -fileset sources_1
+launch_runs impl_2 -to_step write_bitstream -jobs 8
+[Fri Mar 17 23:23:56 2023] Launched impl_2...
+Run output will be captured here: E:/eda/8_fulladder8/full_adder_8/full_adder_8.runs/impl_2/runme.log
+reset_run synth_2
+launch_runs synth_2 -jobs 8
+[Fri Mar 17 23:25:19 2023] Launched synth_2...
+Run output will be captured here: E:/eda/8_fulladder8/full_adder_8/full_adder_8.runs/synth_2/runme.log
+open_run synth_2 -name synth_2
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7a100tcsg324-1
+INFO: [Netlist 29-17] Analyzing 17 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.4
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [E:/eda/8_fulladder8/full_adder_8/full_adder_8.srcs/constrs_1/new/FULLADDER.xdc]
+Finished Parsing XDC File [E:/eda/8_fulladder8/full_adder_8/full_adder_8.srcs/constrs_1/new/FULLADDER.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 1263.930 ; gain = 431.609
+set_property package_pin "" [get_ports [list  iC]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list iC]]
+place_ports iC M18
+save_constraints
+launch_runs impl_2 -to_step write_bitstream -jobs 8
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.218 . Memory (MB): peak = 1725.566 ; gain = 0.000
+[Fri Mar 17 23:28:44 2023] Launched impl_2...
+Run output will be captured here: E:/eda/8_fulladder8/full_adder_8/full_adder_8.runs/impl_2/runme.log
+close_design
+open_run impl_2
+INFO: [Netlist 29-17] Analyzing 17 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [E:/eda/8_fulladder8/full_adder_8/.Xil/Vivado-13948-MM-202212071428/dcp4/full_adder_8.xdc]
+Finished Parsing XDC File [E:/eda/8_fulladder8/full_adder_8/.Xil/Vivado-13948-MM-202212071428/dcp4/full_adder_8.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1729.992 ; gain = 0.000
+Restored from archive | CPU: 0.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1729.992 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+WARNING: [Timing 38-313] There are no user specified timing constraints. Timing constraints are needed for proper timing analysis.
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 17 23:30:23 2023...

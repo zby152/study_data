@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Sat Mar 18 09:26:12 2023
+# Process ID: 9024
+# Current directory: F:/eda/10divider/Divider/Divider.runs/synth_1
+# Command line: vivado.exe -log counter8.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source counter8.tcl
+# Log file: F:/eda/10divider/Divider/Divider.runs/synth_1/counter8.vds
+# Journal file: F:/eda/10divider/Divider/Divider.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source counter8.tcl -notrace

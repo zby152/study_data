@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Mar 17 23:28:50 2023
+# Process ID: 15960
+# Current directory: E:/eda/8_fulladder8/full_adder_8/full_adder_8.runs/impl_2
+# Command line: vivado.exe -log full_adder_8.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source full_adder_8.tcl -notrace
+# Log file: E:/eda/8_fulladder8/full_adder_8/full_adder_8.runs/impl_2/full_adder_8.vdi
+# Journal file: E:/eda/8_fulladder8/full_adder_8/full_adder_8.runs/impl_2\vivado.jou
+#-----------------------------------------------------------
+source full_adder_8.tcl -notrace

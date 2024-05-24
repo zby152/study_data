@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Thu Mar 30 15:51:20 2023
+# Process ID: 1784
+# Current directory: E:/eda/12counter/counter
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9836 E:\eda\12counter\counter\counter.xpr
+# Log file: E:/eda/12counter/counter/vivado.log
+# Journal file: E:/eda/12counter/counter\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/eda/12counter/counter/counter.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+set_property package_pin "" [get_ports [list  sw0]]
+place_ports rst M18
+place_ports sw0 J15
+place_ports sw1 L16
+save_constraints

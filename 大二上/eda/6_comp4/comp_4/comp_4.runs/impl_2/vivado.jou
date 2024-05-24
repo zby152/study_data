@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Mar 17 22:14:09 2023
+# Process ID: 1624
+# Current directory: E:/eda/6_comp4/comp_4/comp_4.runs/impl_2
+# Command line: vivado.exe -log comp_4.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source comp_4.tcl -notrace
+# Log file: E:/eda/6_comp4/comp_4/comp_4.runs/impl_2/comp_4.vdi
+# Journal file: E:/eda/6_comp4/comp_4/comp_4.runs/impl_2\vivado.jou
+#-----------------------------------------------------------
+source comp_4.tcl -notrace

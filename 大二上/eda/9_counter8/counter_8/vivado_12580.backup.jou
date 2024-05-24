@@ -1,0 +1,68 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Mar 17 23:00:39 2023
+# Process ID: 12580
+# Current directory: E:/eda/9_counter8/counter_8
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14556 E:\eda\9_counter8\counter_8\counter_8.xpr
+# Log file: E:/eda/9_counter8/counter_8/vivado.log
+# Journal file: E:/eda/9_counter8/counter_8\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/eda/9_counter8/counter_8/counter_8.xpr
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+create_run synth_2 -flow {Vivado Synthesis 2017} -strategy {Vivado Synthesis Defaults} -report_strategy {Vivado Synthesis Default Reports}
+current_run [get_runs synth_2]
+set_property part xc7a100ticsg324-1L [current_project]
+launch_runs synth_2 -jobs 8
+wait_on_run synth_2
+close_design
+open_run synth_2 -name synth_2
+place_ports CLK E3
+place_ports rst_n M18
+place_ports {oQ[0]} H17
+place_ports {oQ[1]} K15
+place_ports {oQ[2]} J13
+set_property package_pin "" [get_ports [list  {oDisplay[0]}]]
+create_run synth_3 -flow {Vivado Synthesis 2017} -strategy {Vivado Synthesis Defaults} -report_strategy {Vivado Synthesis Default Reports}
+current_run [get_runs synth_3]
+set_property part xc7a100tcsg324-1 [current_project]
+launch_runs synth_3 -jobs 8
+wait_on_run synth_3
+close_design
+open_run synth_3 -name synth_3
+place_ports CLK E3
+place_ports rst_n M18
+place_ports {oQ[0]} H17
+place_ports {oQ[1]} K15
+place_ports {oQ[2]} J13
+set_property package_pin "" [get_ports [list  {oDisplay[0]}]]
+set_property package_pin "" [get_ports [list  {oDisplay[0]}]]
+set_property package_pin "" [get_ports [list  {oDisplay[1]}]]
+place_ports {oDisplay[0]} T10
+place_ports {oDisplay[1]} R10
+place_ports {oDisplay[2]} K16
+place_ports {oDisplay[3]} K13
+place_ports {oDisplay[4]} P15
+place_ports {oDisplay[5]} T11
+place_ports {oDisplay[6]} L18
+file mkdir E:/eda/9_counter8/counter_8/counter_8.srcs/constrs_1/new
+close [ open E:/eda/9_counter8/counter_8/counter_8.srcs/constrs_1/new/counter.xdc w ]
+add_files -fileset constrs_1 E:/eda/9_counter8/counter_8/counter_8.srcs/constrs_1/new/counter.xdc
+set_property target_constrs_file E:/eda/9_counter8/counter_8/counter_8.srcs/constrs_1/new/counter.xdc [current_fileset -constrset]
+save_constraints -force
+set_property IOSTANDARD LVCMOS18 [get_ports [list {oDisplay[6]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {oDisplay[6]} {oDisplay[5]} {oDisplay[4]} {oDisplay[3]} {oDisplay[2]} {oDisplay[1]} {oDisplay[0]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {oQ[2]} {oQ[1]} {oQ[0]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list CLK]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list rst_n]]
+save_constraints
+reset_run synth_3
+launch_runs impl_3 -to_step write_bitstream -jobs 8
+wait_on_run impl_3
+close_design
+open_run impl_3
