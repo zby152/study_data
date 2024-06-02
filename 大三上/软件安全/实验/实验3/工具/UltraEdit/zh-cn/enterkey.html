@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UltraEdit 启动</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+				setState();
+				$("#appProgressBar").fadeOut('fast');
+				$("#appLicenseForm").fadeIn('slow');
+		});
+
+		function handleClick()
+		{
+			if(document.licenseForm.licenseKey.value.length == 0)
+			{
+				alert("你必须输入一个授权码！");
+			}
+			else
+			{	
+					window.external.MyLicenseKey = document.licenseForm.licenseKey.value;
+					$("#appLicenseForm").fadeOut('fast');
+					$("#appProgressBar").fadeIn('slow');
+					$("#enterKeyInfo").attr("innerHTML", "Activating...");
+					document.location="sa://activate?";
+			}
+			return false;
+		}
+	</script>
+	
+</head>
+<body onLoad="setFrameSize(440, 300)">
+
+
+    <div id="top_pane">
+<h1><span id="productName"></span> 注册</h1>
+    </div>
+
+
+	<div id="content">
+	<div id="appTitle">
+	<span class="prodName" id="enterKeyInfo">输入你的序号：<p class="enterKeyInstructions">请输入你的序号然后点选启动。</p></span></div>
+	
+
+	<div id="appProgressBar">
+		<b>请稍候...</b><br /> <img src="Progress.Wheel.03-2.gif"/>
+	</div>
+	
+	<div id="appLicenseForm">
+		<form name="licenseForm">
+			<div class="textwrapper">
+				<input type="text" id="licenseKey" maxlength="100" size="50"/>
+			</div>
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="#" onClick="handleClick();"><span>启动！</span></a>
+			</div>
+		</form>
+	</div>
+
+<p style="clear: all">需要帮助？点选这里： <a href="http://www.ultraedit.com/support.html" target="_blank">http://www.ultraedit.com/support.html</a>.</p>
+  
+  
+
+		<div id="buttons">
+
+			<!-- 			<div class="buttonwrapper"> 				<a class="squarebutton" href="enterkey.html"> 				<span>Enter Key</span> 				</a> 			</div> 			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href=""><span>立即购买</span></a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial"><span>取消</span></a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+
+
+
+	</div> <!-- end content -->
+	
+
+	
+</body>
+</html>

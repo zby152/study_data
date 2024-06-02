@@ -1,0 +1,305 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UltraEdit 离线启动</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+				setState();
+				//hide our steps
+				$("#appProgressBar").fadeOut('fast'); 
+				$("#DAVisit").fadeOut('fast');
+				$("#DASave").fadeOut('fast');
+				$("#DAHelp").fadeOut('fast');
+				$("#activation_options").fadeOut('fast');
+				$("#DAInstall").fadeOut('fast');
+
+		});
+
+
+		function DAIntro() {
+				window.external.AppHeight = 490;
+				$("#appProgressBar").fadeOut('fast'); 
+				$("#DAVisit").fadeOut('fast');
+				$("#DASave").fadeOut('fast');
+				$("#DAHelp").fadeOut('fast');
+				$("#DAInstall").fadeOut('fast');
+				$("#activation_options").fadeOut('fast');
+				$("#DAIntro").fadeIn('slow');
+		}
+
+		function handleSave()
+		{
+
+
+			if(document.licenseForm.licenseKey.value.length == 0)
+			{
+				alert("你必须输入一个授权码！");
+			}
+			else
+			{
+				window.external.MyLicenseKey = document.licenseForm.licenseKey.value;
+				$("#appOfflineLicenseForm").fadeOut('fast');
+				$("#appProgressBar").fadeIn('slow');
+				document.location="sa://generateofflineact?";
+
+			}
+			return false;
+		}
+
+		function handleInstall()
+		{
+			$("#openFile").fadeOut('fast');
+			$("#appProgressBar").show('slow');
+			document.location="sa://offlineact?";
+		}
+
+
+		//****
+		//THIS IS A CALL BACK from the UI. It is called after a request is generated.
+		function activationRequestGenerated()
+		{
+			Step2();
+
+		}
+
+		//****
+		//THIS IS A CALL BACK from the UI. It is called after a request fails to be generated or saved.
+		//this can be called if the user presses cancel.
+		//The error is located in window.external.MyError
+		function ActivationRequestGenerationError()
+		{
+			$("#appProgressBar").fadeOut('fast');
+			$("#enterKeyInfo").fadeIn('slow');
+
+
+		}
+
+		function Step1() //save the request
+		{
+			window.external.AppHeight = 340;
+			$("#DAIntro").fadeOut('fast');
+			$("#DAHelp").fadeOut('fast');
+			$("#DASave").fadeIn('slow');
+			$("#appProgressBar").fadeOut('fast');
+			$("#appOfflineLicenseForm").fadeIn('slow');
+			$("#activation_options").fadeIn('fast');
+		}
+
+
+		function Step2() //show the link to upload page, provide a link to install (Step3)
+		{
+			window.external.AppHeight = 440;
+			$("#appProgressBar").fadeOut('fast');
+			$("#appOfflineLicenseForm").fadeOut('slow');
+			$("#DAIntro").fadeOut('fast');
+			$("#DASave").fadeOut('fast');
+			$("#DAHelp").fadeOut('fast');
+			$("#DAVisit").fadeIn('slow');
+			$("#activation_options").fadeIn('fast');
+		}
+
+		function Step3() //show the link to upload page, provide a link to install (Step3)
+		{
+			window.external.AppHeight = 345;
+			$("#appProgressBar").fadeOut('slow');
+			$("#appOfflineLicenseForm").fadeOut('slow');
+			$("#DAIntro").fadeOut('fast');
+			$("#DASave").fadeOut('fast');
+			$("#DAVisit").fadeOut('fast');
+			$("#DAHelp").fadeOut('fast');
+			$("#DAInstall").fadeIn('slow');
+			$("#activation_options").fadeIn('fast');
+		}
+		
+		function Help() //show the description of the offline process. 
+		{
+			window.external.AppHeight = 490;
+			$("#DAIntro").fadeOut('fast');
+			$("#DASave").fadeOut('fast');
+			$("#DAVisit").fadeOut('fast');
+			$("#DAInstall").fadeOut('fast');
+			$("#activation_options").fadeOut('fast');
+			$("#DAHelp").fadeIn('slow');
+			$("#appProgressBar").fadeOut('fast');
+			$("#appOfflineLicenseForm").fadeIn('slow');
+		}
+
+	</script>
+<head>
+<body onLoad="setFrameSize(440, 490)">
+
+
+    <div id="top_pane">
+<h1><span id="productName"></span> 注册</h1>
+    </div>
+
+
+	<div id="content">
+
+
+	<div id="DAIntro">
+		<div id="appTitle"><span class="prodName" id="enterKeyInfo">无法建立连线</span></div>
+		<div id="appContent">
+			<p class="greySubOffline">
+				我们无法建立网际网路连线。这有可能是因为你的电脑中断与网际网路的连线或这个程式被防火墙封锁。你有以下的选择：
+			</p>
+
+			<div id="offlineLink1">
+				<b>选择 1:启用网际网路连线</b> <a href="enterkey.html">
+						<p> 我已启用我的连线并且希望输入我的授权码。</p>
+				</a>
+				</div>
+
+			<div id="offlineLink2">
+				<b>选择 2:离线启动</b>
+				
+				<p>这个离线启动只需 3 个简单的处理步骤</p>
+				<ol>
+					<li><a href="#" onClick="Step1();">产生启动请求档案。</a></li>
+					<li><a href="#" onClick="Step2();">产生启动回应档案。</a></li>
+					<li><a href="#" onClick="Step3();">安装这个回应档案。</a></li>
+				</ol>
+				
+				<p><strong>&raquo;</strong> <strong style="color: #2C2F64">开始动手：</strong><a href="#" onClick="Step1();">我要经由离线启动 (步骤 1)。</a> <br /> <strong>&raquo;</strong> 说明：<a href="#" onClick="Help();"> 我要了解更多关于离线启动的细节</a></p>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="DASave">
+		<div>
+			
+			<div id="appTitle2">
+			<span class="prodName">步骤 1：产生启动请求</span>
+		</div>
+			<p>在底下输入你的序号然后点选产生请求。接下来当出现提示时，点选储存到以储存这个 ActivationRequest.txt 档案到你的硬碟。</p>
+		</div>
+
+		<div id="appOfflineLicenseForm">
+			<form name="licenseForm">
+				<div class="textwrapper">
+					<input type="text" id="licenseKey" maxlength="100" size="40"/>
+				</div>
+				<div class="buttonwrapper">
+					<a class="squarebutton" href="#" onClick="handleSave();"><span>产生请求</span></a>
+				</div>
+			</form>
+		</div>
+			
+		
+	</div>
+
+	<div id="DAVisit">
+		<div id="appTitle2">
+				<span class="prodName">步骤 2：产生启动回应</span>
+		</div>
+		<div>
+			<p class="greySub">
+			现在，在<strong>任何</strong>具有网际网路连线的系统中，你必须上传这个请求以产生一个启动回应。你可以上传这个 ActivationRequest.txt 到我们的伺服器，位于： 				<a href="http://www.ultraedit.com/activation/offline.php" target="_blank">
+					<p>http://www.ultraedit.com/activation/offline.php</p>
+				</a></p>
+			<p class="greySub">
+			在你上传这个 ActivationRequest.txt <b>之后</b>，伺服器会提供你一个 ActivationResponse.txt 档案。你需要在步骤 3 中安装这个回应档案到你的 (离线) 系统。  </p>
+			
+
+			<p class="greySub">
+				<a href="#" onClick="Step3();">
+					<p>继续到步骤 3：点选这里以安装这个启动回应。</p>
+				</a>
+			</p>
+
+		</div>
+	</div>
+
+	<div id="DAInstall">
+
+		<div id="appTitle3">
+			<span class="prodName">步骤 3：安装这个启动回应</span>
+		</div>
+		<div>
+			<p class="greySub">
+				点选底下的“<b>安装</b>”按钮以安装这个启动回应档案到你的离线系统。会提示你浏览并选择这个在步骤 2 产生的启动回应档案的位置。
+			</p>
+
+		</div>
+
+		<div id="openFile">
+				<div class="buttonwrapper">
+					<a class="squarebutton" href="#" onClick="handleInstall();"><span>安装</span></a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!--- added -->
+	
+	<div id="DAHelp">
+		<div id="appTitle2">
+				<span class="prodName">离线启动说明</span>
+		</div>
+		<div>
+			<p>离线启动只需简单的 3 个处理步骤 - 产生一个启动请求；上传这个启动请求并接收一个回应档案；安装这个回应。</p>
+			<div class="offline_instructions">
+				<p><a href="#" onClick="Step1();"><strong>步骤 1：产生启动请求档案。</strong></a></p>
+				<ol>
+					<li>输入你的序号到这个表单栏位然后点选储存。</li>
+					<li>会提示你储存这个 ActivationRequest.txt 档案到你的系统。浏览并选择你要储存这个档案的位置，然后点选储存。<br /><br /><strong>注意:</strong>如果你的系统没有网际网路连线以完成步骤 2 (底下)，你必须将这个档案放到一个 USB 磁碟 (或类似装置) 如此你可以将它拿到那个<em>没有</em>网际网路连线的系统。</li>
+					<li>继续到步骤 2。</li>
+				</ol>
+				<p><a href="#" onClick="Step2();"><strong>步骤 2：产生启动回应档案。</strong></a></p>
+				<ol>
+					<li>现在你已产生了这个 ActivationRequest.txt 档案，你必须将它上传到我们的伺服器以产生这个 ActivationResponse.txt。<br /><br /> 在这个具有网际网路连线的系统中，上传这个 ActivationRequest.txt 档案到<br /><br /> <a href="http://www.ultraedit.com/activation/offline.php"  target="_blank">http://www.ultraedit.com/activation/offline.php</a>。</li>
+					<li>伺服器会产生一个 ActivationResponse.txt。储存这个档案到一个 USB 磁碟 (或类似装置) 并将它带回你要启动的那个系统。 </li>
+					<li>继续到步骤 3。</li>
+				</ol>
+				<p><a href="#" onClick="Step3();"><strong>步骤 3：安装这个回应档案.</strong></a></p>
+				<ol>
+					<li>步骤 3 只需简单的安装这个 ActivationResponse.txt 档案即可。<br /><br />点选安装按钮。将会提示你选取这个 ActivationResponse.txt 档案的位置。</li>
+					<li>浏览并选择这个 ActivationResponse.txt 然后点选开启。</li>
+					<li>软体便会验证你的序号。</li>
+					<li>到此即告一段落。</li>
+				</ol>
+			</div> <!-- end offline_instructions -->
+			<p class="activation_options"><strong>&raquo;</strong> <a href="#" onClick="DAIntro();">回到离线启动选项首页</a></p>
+		</div>
+	</div>
+	</div>
+<!--- added -->
+
+	<div id="appProgressBar">
+		<b class="moment_lbl">请稍候...</b><br /> <img src="Progress.Wheel.03-2.gif"/>
+	</div>
+
+<div id="activation_options">
+	<p>
+		 <strong>&raquo;</strong> <a href="#" onClick="DAIntro();">离线启动首页</a><br /> <strong>&raquo;</strong> <a href="#" onClick="Help();">离线启动说明</a>
+	</p>
+</div>
+
+
+	<div id="buttons" class="offline_options">
+
+			<!-- 			<div class="buttonwrapper"> 				<a class="squarebutton" href="enterkey.html"> 				<span>Enter Key</span> 				</a> 			</div> 			-->
+	
+	<!-- 			<div class="buttonwrapper"> 				<a class="squarebutton" id="purchaseUrl" target="_blank" href=""> 				<span>Buy Now</span> 				</a> 			</div>	 			-->
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial"><span>取消</span></a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+	
+</div> <!-- end content -->
+
+
+	
+
+</body>
+</html>

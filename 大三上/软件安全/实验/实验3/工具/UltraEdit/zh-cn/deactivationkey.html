@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UltraEdit 反启动</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+				setState();
+				$("#appProgressBar").fadeOut('fast');
+				$("#licKey span").text(licenseKey);
+
+
+		});
+
+
+		function handleClick()
+		{
+			$("#appLicenseForm").fadeOut('fast');
+			$("#originalSerial").fadeOut('fast');
+			$("#appProgressBar").fadeIn('slow');
+			$("#activationInfo").attr("innerHTML", "Deactivating...");
+			document.location="sa://deactivate?";
+		}
+
+
+		function clickButton(e, buttonid)
+		{
+		      var evt = e ? e : window.event;
+		      var bt = document.getElementById(buttonid);
+		      if (bt)
+		      {
+		      		if (evt.keyCode == 13)
+				{
+		                	bt.click();
+			                return false;
+	    	           	}
+		      }
+		}
+
+	</script>
+</head>
+<body onLoad="setFrameSize(440, 410)" onkeypress="return clickButton(event,'deactivateButton')">
+
+
+    <div id="top_pane">
+<h1><span id="productName"></span> 注册</h1>
+    </div>
+
+
+	<div id="content">
+
+	<div id="appTitle"><span class="prodName">反启动你的授权</span></div>
+	<div id="appContent">
+		<p>
+	你目前已安装一份授权码。如果你要在一个新的系统启动这份授权，你必须先在这个系统中反启动这份授权。</p>
+	
+		<p class="important">请储存这个授权码，你必须靠它来启动新的系统。</p>
+		<p>要反启动这份授权码，按下底下的<b>反启动</b>按钮。	</p>
+	</div>
+	<div id="appProgressBar">
+		<b class="moment_lbl">请稍候...</b><br /> <img src="Progress.Wheel.03-2.gif"/>
+	</div>
+
+
+	<div id="appLicenseForm">
+
+			<div class="licwrapper" id="licKey">
+				<span class="fatOrange"></span>
+			</div>
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="#" onClick="handleClick();"><span>反启动！</span></a>
+			</div>
+
+	</div>
+	
+	<p class="greySub" style="clear: both">
+			<b>需要购买一份授权？</b> <a href="" id="purchaseUrl2" target="_blank">点选这里</a>购买<span id="productName2"></span>。
+		</p>
+
+	</div> <!-- end content -->
+	
+	<div id="buttons" class="deactivate_key">
+
+			<!--  			<div class="buttonwrapper"> 				<a class="squarebutton" href="enterkey.html"> 				<span>Enter Key</span> 				</a> 			</div> 			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href=""><span>立即购买</span></a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial"><span>取消</span></a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+	
+</body>
+</html>

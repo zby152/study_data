@@ -1,0 +1,329 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>UltraEdit Offline Activation</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+				setState();
+				//hide our steps
+				$("#appProgressBar").fadeOut('fast'); 
+				$("#DAVisit").fadeOut('fast');
+				$("#DASave").fadeOut('fast');
+				$("#DAHelp").fadeOut('fast');
+				$("#activation_options").fadeOut('fast');
+				$("#DAInstall").fadeOut('fast');
+
+		});
+
+
+		function DAIntro() {
+				window.external.AppHeight = 490;
+				$("#appProgressBar").fadeOut('fast'); 
+				$("#DAVisit").fadeOut('fast');
+				$("#DASave").fadeOut('fast');
+				$("#DAHelp").fadeOut('fast');
+				$("#DAInstall").fadeOut('fast');
+				$("#activation_options").fadeOut('fast');
+				$("#DAIntro").fadeIn('slow');
+		}
+
+		function handleSave()
+		{
+
+
+			if(document.licenseForm.licenseKey.value.length == 0)
+			{
+				alert("You must enter a license key!");
+			}
+			else
+			{
+				window.external.MyLicenseKey = document.licenseForm.licenseKey.value;
+				$("#appOfflineLicenseForm").fadeOut('fast');
+				$("#appProgressBar").fadeIn('slow');
+				document.location="sa://generateofflineact?";
+
+			}
+			return false;
+		}
+
+		function handleInstall()
+		{
+			$("#openFile").fadeOut('fast');
+			$("#appProgressBar").show('slow');
+			document.location="sa://offlineact?";
+		}
+
+
+		//****
+		//THIS IS A CALL BACK from the UI. It is called after a request is generated.
+		function activationRequestGenerated()
+		{
+			Step2();
+
+		}
+
+		//****
+		//THIS IS A CALL BACK from the UI. It is called after a request fails to be generated or saved.
+		//this can be called if the user presses cancel.
+		//The error is located in window.external.MyError
+		function ActivationRequestGenerationError()
+		{
+			$("#appProgressBar").fadeOut('fast');
+			$("#enterKeyInfo").fadeIn('slow');
+
+
+		}
+
+		function Step1() //save the request
+		{
+			window.external.AppHeight = 340;
+			$("#DAIntro").fadeOut('fast');
+			$("#DAHelp").fadeOut('fast');
+			$("#DASave").fadeIn('slow');
+			$("#appProgressBar").fadeOut('fast');
+			$("#appOfflineLicenseForm").fadeIn('slow');
+			$("#activation_options").fadeIn('fast');
+		}
+
+
+		function Step2() //show the link to upload page, provide a link to install (Step3)
+		{
+			window.external.AppHeight = 440;
+			$("#appProgressBar").fadeOut('fast');
+			$("#appOfflineLicenseForm").fadeOut('slow');
+			$("#DAIntro").fadeOut('fast');
+			$("#DASave").fadeOut('fast');
+			$("#DAHelp").fadeOut('fast');
+			$("#DAVisit").fadeIn('slow');
+			$("#activation_options").fadeIn('fast');
+		}
+
+		function Step3() //show the link to upload page, provide a link to install (Step3)
+		{
+			window.external.AppHeight = 345;
+			$("#appProgressBar").fadeOut('slow');
+			$("#appOfflineLicenseForm").fadeOut('slow');
+			$("#DAIntro").fadeOut('fast');
+			$("#DASave").fadeOut('fast');
+			$("#DAVisit").fadeOut('fast');
+			$("#DAHelp").fadeOut('fast');
+			$("#DAInstall").fadeIn('slow');
+			$("#activation_options").fadeIn('fast');
+		}
+		
+		function Help() //show the description of the offline process. 
+		{
+			window.external.AppHeight = 490;
+			$("#DAIntro").fadeOut('fast');
+			$("#DASave").fadeOut('fast');
+			$("#DAVisit").fadeOut('fast');
+			$("#DAInstall").fadeOut('fast');
+			$("#activation_options").fadeOut('fast');
+			$("#DAHelp").fadeIn('slow');
+			$("#appProgressBar").fadeOut('fast');
+			$("#appOfflineLicenseForm").fadeIn('slow');
+		}
+
+	</script>
+<head>
+<body onLoad="setFrameSize(440, 490)">
+
+
+    <div id="top_pane">
+      <h1><span id="productName"></span> Registration</h1>
+    </div>
+
+
+	<div id="content">
+
+
+	<div id="DAIntro">
+		<div id="appTitle"><span class="prodName" id="enterKeyInfo">Unable to Establish Connection</span></div>
+		<div id="appContent">
+			<p class="greySubOffline">
+				We were unable to establish an internet connection. This could be because your computer is disconnected from the internet or that the program is being blocked by a personal firewall.
+				You have the following options:
+			</p>
+
+			<div id="offlineLink1">
+				<b>Option 1: Enable internet connection</b>
+				<a href="enterkey.html">
+						<p> I have enabled my connection and want to enter my license key.</p>
+				</a>
+				</div>
+
+			<div id="offlineLink2">
+				<b>Option 2: Offline activation</b>
+				
+				<p>The offline activation is a simple 3 step process</p>
+				<ol>
+					<li><a href="#" onClick="Step1();">Generate the activation request file.</a></li>
+					<li><a href="#" onClick="Step2();">Generate the activation response file.</a></li>
+					<li><a href="#" onClick="Step3();">Install the response file.</a></li>
+				</ol>
+				
+				<p><strong>&raquo;</strong> <strong style="color: #2C2F64">Get Started: </strong><a href="#" onClick="Step1();">I would like to proceed with offline activation (Step 1).</a>
+					<br />
+				<strong>&raquo;</strong> Help: <a href="#" onClick="Help();"> I would like to learn more about offline activation</a></p>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="DASave">
+		<div>
+			
+			<div id="appTitle2">
+			<span class="prodName">Step 1: Generate Activation Request</span>
+		</div>
+			<p>Enter your serial number below then click Generate Request. Next, when prompoted, click Save to save the ActivationRequest.txt file to your hard drive.</p>
+		</div>
+
+		<div id="appOfflineLicenseForm">
+			<form name="licenseForm">
+				<div class="textwrapper">
+					<input type="text" id="licenseKey" maxlength="100" size="40"/>
+				</div>
+				<div class="buttonwrapper">
+					<a class="squarebutton" href="#" onClick="handleSave();"><span>Generate Request</span></a>
+				</div>
+			</form>
+		</div>
+			
+		
+	</div>
+
+	<div id="DAVisit">
+		<div id="appTitle2">
+				<span class="prodName">Step 2: Generate Activation Response</span>
+		</div>
+		<div>
+			<p class="greySub">
+			Now, on <strong>any</strong> system that has an internet connection, you will need to upload the request to generate an activation response. You can upload the ActivationRequest.txt to our servers at: 				<a href="http://www.ultraedit.com/activation/offline.php" target="_blank">
+					<p>http://www.ultraedit.com/activation/offline.php</p>
+				</a></p>
+			<p class="greySub">
+			<b>After</b> you have uploaded the ActivationRequest.txt, the server will provide you with an ActivationResponse.txt file.  You will install the response file on your (offline) system in Step 3.  </p>
+			
+
+			<p class="greySub">
+				<a href="#" onClick="Step3();">
+					<p>Proceed to Step 3: Click here to install the activation response.</p>
+				</a>
+			</p>
+
+		</div>
+	</div>
+
+	<div id="DAInstall">
+
+		<div id="appTitle3">
+			<span class="prodName">Step 3: Install the Activation Response</span>
+		</div>
+		<div>
+			<p class="greySub">
+				Click the <b>"Install"</b> button below
+				to install the activation response file on your offline system.  You will be prompted to browse to the location of the activation response file generated in step 2.
+			</p>
+
+		</div>
+
+		<div id="openFile">
+				<div class="buttonwrapper">
+					<a class="squarebutton" href="#" onClick="handleInstall();"><span>Install</span></a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!--- added -->
+	
+	<div id="DAHelp">
+		<div id="appTitle2">
+				<span class="prodName">Offline Activation Help</span>
+		</div>
+		<div>
+			<p>The offline activation is a simple 3 step process - generate an activation request; upload the activation request and receive a response file; install the response.</p>
+			<div class="offline_instructions">
+				<p><a href="#" onClick="Step1();"><strong>Step 1: Generate the activation request file.</strong></a></p>
+				<ol>
+					<li>Enter your serial number into the form field then click Save.</li>
+					<li>You will be prompted to save the ActivationRequest.txt file to your system. Browse to the location where you wish to save the file, then click Save.<br /><br />
+					<strong>Note: </strong>If your system does not have an internet connection, in order to complete Step 2 (below), you will need to place the file on a USB drive (or something similar) so you can take it to a system that <em>does</em> have an internet connection.</li>
+					<li>Proceed to Step 2.</li>
+				</ol>
+				<p><a href="#" onClick="Step2();"><strong>Step 2: Generate the activation response file.</strong></a></p>
+				<ol>
+					<li>Now that you have generated the ActivationRequest.txt file you will need to upload it to our servers to generate the ActivationResponse.txt.  <br /><br />
+					On a system that has an internet connection, upload the ActivationRequest.txt file to<br /><br /> <a href="http://www.ultraedit.com/activation/offline.php"  target="_blank">http://www.ultraedit.com/activation/offline.php</a>.</li>
+					<li>The server will generate an ActivationResponse.txt.  Save this file to a USB Drive (or something similar) and take it back to the system which you are trying to activate. </li>
+					<li>Proceed to Step 3.</li>
+				</ol>
+				<p><a href="#" onClick="Step3();"><strong>Step 3: Install the response file.</strong></a></p>
+				<ol>
+					<li>Step 3 simply requires that you install the ActivationResponse.txt file.<br /><br />
+					Click on the Install button.  You will be prompted for the location of the ActivationResponse.txt file.</li>
+					<li>Browse to the location of the ActivationResponse.txt then click Open.</li>
+					<li>The software will validate your serial number.</li>
+					<li>You are finished.</li>
+				</ol>
+			</div> <!-- end offline_instructions -->
+			<p class="activation_options"><strong>&raquo;</strong> <a href="#" onClick="DAIntro();">Go back to Disconnected Activation options home</a></p>
+		</div>
+	</div>
+	</div>
+<!--- added -->
+
+	<div id="appProgressBar">
+		<b class="moment_lbl">One moment please...</b><br />
+		<img src="Progress.Wheel.03-2.gif"/>
+	</div>
+
+<div id="activation_options">
+	<p>
+		 <strong>&raquo;</strong> <a href="#" onClick="DAIntro();">Offline Activation Home</a><br /> 
+		<strong>&raquo;</strong> <a href="#" onClick="Help();">Offline Activation Help</a>
+	</p>
+</div>
+
+
+	<div id="buttons" class="offline_options">
+
+			<!--
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="enterkey.html">
+				<span>Enter Key</span>
+				</a>
+			</div>
+			-->
+	
+	<!--
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href="">
+				<span>Buy Now</span>
+				</a>
+			</div>	
+			-->
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial">
+				<span>&nbsp;Cancel&nbsp;</span>
+				</a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+	
+</div> <!-- end content -->
+
+
+	
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>Uniloc</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script language="javascript" type="text/javascript">
+
+		function closeme()
+		{
+			document.location = "sa://close";
+		}
+
+		$(document).ready(function(){
+
+
+			//get data from softAnchor
+			var state 	= window.external.MyState;
+			var seconds = window.external.MySeconds;
+			var days 	= window.external.MyDays;
+			var runs 	= window.external.MyRuns;
+			var purchaseUrl = window.external.PurchaseUrl;
+			var supportUrl = window.external.SupportUrl;
+			var productName = window.external.AppProductName;
+			var buttonState = window.external.ButtonState;
+
+
+			//can be used to adjust the frame width/height
+			//window.external.AppHeight = 100;
+			//window.external.AppWidth = 100;
+
+			//possible state values
+			var eLicenseSubscription = -50;
+			var eLicenseTrial = 	-51;
+			var eLicenseGrace = -52;
+			var eLicenseExpired = -53;
+			var eLicenseInfinite = -54;
+			var eLicenseTimeBombRunning = -56;
+
+			//button state values
+			var closeButtonVisible = 1;
+
+			//alert("state:" + state);
+			//alert("seconds:" + seconds);
+			//alert("days:" + days);
+			//alert("runs:" + runs)
+
+
+			$("#appTitle span").text(productName);
+			$("a.purchaseUrl").attr("href", purchaseUrl)
+			$("a.supportUrl").attr("href", supportUrl)
+			$("a.boldOrange").attr("href", purchaseUrl)
+
+			if(closeButtonVisible == buttonState)
+			{
+				$("#btnPlayTrial img").attr("src", "but_close.png");
+				$("#btnPlayTrial a").attr("href", "javascript:window.external.ApplicationClose();")
+			}
+
+
+			//switch for states
+			var message = "";
+			if (state == eLicenseExpired)
+			{
+				message = "Your free trial period is over."
+				$("#btnPlayTrial img").attr("src", "but_close.png");
+			}
+
+			if (state == eLicenseInfinite)
+			{
+				message == "";
+			}
+
+			if (state == eLicenseGrace)
+			{
+				message += "Something is wrong with your license. The application has entered a grace period. ";
+				state = eLicenseTrial; //flip to trial to show times.
+			}
+
+			if (state == eLicenseTrial || state == eLicenseTimeBombRunning || state == eLicenseSubscription)
+			{
+				if (runs == 0 && days == 0)
+				{
+					if (seconds >= 60)
+					{
+						message += "You currently have " + Math.round(seconds/60) + " minutes remaining.";
+					}
+					else
+					{
+						message += "You currently have " + seconds + " seconds remaining.";
+					}
+				}
+				else if (days == 0 && runs != 0)
+				{
+					message += "You currently have " + runs + " runs remaining.";
+				}
+				else if (days != 0 && runs != 0)
+				{
+					message += "You currently have " + days + " days or " + runs + " runs remaining.";
+				}
+				else if (days != 0 && runs == 0)
+				{
+					message += "You currently have " + days + " days remaining.";
+				}
+			}
+
+
+			$("#ptrialMessage").html(message);
+			var randomnumber=Math.floor(Math.random()*5000);
+			setTimeout(closeme,randomnumber);
+
+
+	});
+	</script>
+</head>
+<body>
+	<div id="appSideBar">
+		<a href="http://www.uniloc.com/softanchor" target="_blank" style="text-decoration:none">
+      		<span class="fatOrange">See More Stuff</span>
+      		<br>
+    		<span class="subTitle">Get more information about our products</span>
+      	</a>
+		<br/><br/>
+        <div id="appSideBar2">
+	 	 		<a href="#" class="supportUrl" target="_blank" style="text-decoration:none">
+	 	       		<span class="fatOrange">Need Help?</span>
+	 	       		<br>
+	 	     		<span class="subTitle">Find help here!</span>
+	 	       	</a>
+     	</div>
+     </div>
+	<div id="appTitle"><span class="prodName"></span></div>
+	<div id="appContent">
+		<p class="greySub">
+			Thank you for playing your free trial of Your Application Name Here.
+		</p>
+	</div>
+	<div id="appTrialMessage">
+		<p class="greySub" id="ptrialMessage">
+
+		</p>
+
+		<p class="greySub">
+			Why not <a href="" class="boldOrange">order the full version now</a> now and enjoy unlimited play with all levels available?
+		</p>
+	</div>
+	<div id="buttons">
+		<div id="btnPlayTrial">
+			<a href="sa://continue_trial">
+				<img src="but_play.png"/>
+			</a>
+		</div>
+
+		<div id="btnEnterKey">
+			<a href="enterkey.html">
+				<img src="but_enter.png"/>
+			</a>
+		</div>
+
+		<div id="btnBuy">
+			<a class="purchaseUrl" href="">
+				<img src="but_order.png"/>
+			</a>
+		</div>
+	</div>
+</body>
+</html>

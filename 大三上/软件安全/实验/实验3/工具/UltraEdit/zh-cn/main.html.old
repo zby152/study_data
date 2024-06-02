@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>Uniloc</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script language="javascript" type="text/javascript">
+
+		$(document).ready(function()
+		{
+
+			setState();
+			$("#appTitle span").text(productName);
+
+		});
+	</script>
+</head>
+<body>
+	<div id="appSideBar">
+		<a href="http://www.uniloc.com/softanchor" target="_blank" style="text-decoration:none">
+      		<span class="fatOrange">See More Stuff</span>
+      		<br>
+    		<span class="subTitle">Get more information about our products</span>
+      	</a>
+		<br/><br/>
+        <div id="appSideBar2">
+	 	 		<a href="#" class="supportUrl" target="_blank" style="text-decoration:none">
+	 	       		<span class="fatOrange">Need Help?</span>
+	 	       		<br>
+	 	     		<span class="subTitle">Find help here!</span>
+	 	       	</a>
+     	</div>
+     </div>
+	<div id="appTitle"><span class="prodName"></span></div>
+	<div id="appContent">
+		<p class="greySub">
+			Thank you for playing your free trial of UltraEdit.
+		</p>
+	</div>
+	<div id="appTrialMessage">
+		<p class="greySub" id="ptrialMessage">
+
+		</p>
+
+		<p class="greySub">
+			Why not <a href="" class="boldOrange">order the full version now</a> now and enjoy unlimited play with all levels available?
+		</p>
+	</div>
+	<div id="buttons">
+		<div id="btnPlayTrial">
+			<a id="linkPlay" href="sa://continue_trial">
+				<img src="but_play.png"/>
+			</a>
+		</div>
+
+		<div id="btnEnterKey">
+			<a id="linkEnter"  href="enterkey.html">
+				<img src="but_enter.png"/>
+			</a>
+		</div>
+
+		<div id="btnBuy">
+			<a id="linkBuy" class="purchaseUrl" href="">
+				<img src="but_order.png"/>
+			</a>
+		</div>
+	</div>
+</body>
+</html>

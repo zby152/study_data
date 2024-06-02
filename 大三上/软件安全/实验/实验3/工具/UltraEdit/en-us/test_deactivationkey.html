@@ -1,0 +1,145 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>Uniloc</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		function closeme()
+		{
+				document.location = "sa://close";
+		}
+
+		$(document).ready(function() {
+				$("#appProgressBar").hide('fast');
+
+				//get data from softAnchor
+				var state 	= window.external.MyState;
+				var seconds = window.external.MySeconds;
+				var days 	= window.external.MyDays;
+				var runs 	= window.external.MyRuns;
+				var purchaseUrl = window.external.PurchaseUrl;
+				var supportUrl = window.external.SupportUrl;
+				var productName = window.external.AppProductName;
+				var origLicKey = window.external.MyLicenseKey;
+
+
+				//possible state values
+				var eLicenseSubscription = -50;
+				var eLicenseTrial = 	-51;
+				var eLicenseGrace = -52;
+				var eLicenseExpired = -53;
+				var eLicenseInfinite = -54;
+				var eLicenseTimeBombRunning = -56;
+
+				//alert("state:" + state);
+				//alert("seconds:" + seconds);
+				//alert("days:" + days);
+				//alert("runs:" + runs)
+
+				$("a.supportUrl").attr("href", supportUrl);
+
+				$("#licKey span").text(origLicKey);
+
+				$("a.purchaseUrl").attr("href", purchaseUrl)
+				$("a.supportUrl").attr("href", supportUrl)
+				$("a.boldOrange").attr("href", purchaseUrl)
+
+				var randomnumber=Math.floor(Math.random()*5000);
+
+				setTimeout(closeme,randomnumber);
+
+
+
+		});
+
+
+		function handleClick()
+		{
+			$("#appProgressBar").show('slow');
+			$("#originalSerial").hide('fast');
+			$("#activationInfo").attr("innerHTML", "Deactivating...");
+			document.location="sa://deactivate?";
+		}
+
+
+		function clickButton(e, buttonid)
+		{
+		      var evt = e ? e : window.event;
+		      var bt = document.getElementById(buttonid);
+		      if (bt)
+		      {
+		      		if (evt.keyCode == 13)
+				{
+		                	bt.click();
+			                return false;
+	    	           	}
+		      }
+		}
+
+	</script>
+</head>
+<body  onkeypress="return clickButton(event,'deactivateButton')">
+
+	<div id="appSideBar">
+		<a href="http://www.uniloc.com/softanchor" target="_blank" style="text-decoration:none">
+      		<span class="fatOrange">See More Stuff</span>
+      		<br>
+    		<span class="subTitle">Get more information about our products</span>
+      	</a>
+      	<br/><br/>
+      	   <div id="appSideBar2">
+			 	 		<a href="#" class="supportUrl" target="_blank" style="text-decoration:none">
+			 	       		<span class="fatOrange">Need Help?</span>
+			 	       		<br>
+			 	     		<span class="subTitle">Find help here!</span>
+			 	       	</a>
+    	  </div>
+     </div>
+
+
+
+	<div id="appTitle"><span class="prodName">Deactivate This license</span></div>
+	<div id="appContent">
+		<p class="greySub">
+			You currently have a license key installed for this product. To deactivate this license key press the <b>deactivate</b> button below.
+		</p>
+	</div>
+	<div id="appProgressBar">
+		<img src="Progress.Wheel.03-2.gif"/>
+	</div>
+
+
+	<div id="appLicenseForm">
+
+			<div class="licwrapper" id="licKey">
+				<span class="fatOrange"></span>
+			</div>
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="#" onClick="handleClick();"><span>Deactivate!</span></a>
+			</div>
+
+	</div>
+
+
+	<div id="buttons">
+			<div id="btnPlayTrial">
+				<a href="sa://continue_trial">
+					<img src="but_play.png"/>
+				</a>
+			</div>
+
+			<div id="btnEnterKey">
+				<a href="enterkey.html">
+					<img src="but_enter.png"/>
+				</a>
+			</div>
+
+			<div id="btnBuy">
+				<a class="purchaseUrl" href="">
+					<img src="but_order.png"/>
+				</a>
+			</div>
+	</div>
+</body>
+</html>

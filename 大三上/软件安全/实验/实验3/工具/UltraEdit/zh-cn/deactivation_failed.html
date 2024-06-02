@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UltraEdit 反启动</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="error.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>	
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+
+
+		$(document).ready(function(){
+
+
+
+					//defined in state.js
+					setState();
+
+					$("#appTitle span").text("你尝试反启动这个产品已失败。");
+					$("#appErrorMeaning").text(getErrorText(window.external.MyError));
+
+			});
+
+	</script>
+</head>
+<body onLoad="setFrameSize(440, 300)">
+
+    <div id="top_pane">
+<h1><span id="productName"></span> 注册</h1>
+    </div>
+
+
+	<div id="content">
+
+	<div id="appTitle">
+		<span class="prodName"> </span>
+	</div>
+
+	<div id="appContent">
+
+			<a href="#" onClick="handleError();"><p class="greySub_Error">请点选这里以取得进一步资讯。</p></a>
+
+	</div>
+
+
+	<div id="buttons">
+
+			<!-- 			<div class="buttonwrapper"> 				<a class="squarebutton" href="enterkey.html"> 				<span>Enter Key</span> 				</a> 			</div> 			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href=""><span>立即购买</span></a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial"><span>取消</span></a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+
+	</div> <!-- end content -->
+
+
+</body>
+</html>

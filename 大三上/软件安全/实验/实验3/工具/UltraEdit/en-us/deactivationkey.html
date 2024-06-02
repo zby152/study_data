@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>UltraEdit Deactivation</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+				setState();
+				$("#appProgressBar").fadeOut('fast');
+				$("#licKey span").text(licenseKey);
+
+
+		});
+
+
+		function handleClick()
+		{
+			$("#appLicenseForm").fadeOut('fast');
+			$("#originalSerial").fadeOut('fast');
+			$("#appProgressBar").fadeIn('slow');
+			$("#activationInfo").attr("innerHTML", "Deactivating...");
+			document.location="sa://deactivate?";
+		}
+
+
+		function clickButton(e, buttonid)
+		{
+		      var evt = e ? e : window.event;
+		      var bt = document.getElementById(buttonid);
+		      if (bt)
+		      {
+		      		if (evt.keyCode == 13)
+				{
+		                	bt.click();
+			                return false;
+	    	           	}
+		      }
+		}
+
+	</script>
+</head>
+<body onLoad="setFrameSize(440, 410)" onkeypress="return clickButton(event,'deactivateButton')">
+
+
+    <div id="top_pane">
+      <h1><span id="productName"></span> Registration</h1>
+    </div>
+
+
+	<div id="content">
+
+	<div id="appTitle"><span class="prodName">Deactivate Your License</span></div>
+	<div id="appContent">
+		<p>
+	You currently have a license key installed. If you wish to activate this license on a new system, you will need to deactivate the license on this system first.</p>
+	
+		<p class="important">Please save this key, you will need it to activate your new system.</p>
+		<p>To deactivate this license key press the <b>deactivate</b> button below.	</p>
+	</div>
+	<div id="appProgressBar">
+		<b class="moment_lbl">One moment please...</b><br />
+		<img src="Progress.Wheel.03-2.gif"/>
+	</div>
+
+
+	<div id="appLicenseForm">
+
+			<div class="licwrapper" id="licKey">
+				<span class="fatOrange"></span>
+			</div>
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="#" onClick="handleClick();"><span>Deactivate!</span></a>
+			</div>
+
+	</div>
+	
+	<p class="greySub" style="clear: both">
+			<b>Need to purchase a license?</b> <a href="" id="purchaseUrl2" target="_blank">Click here</a> to purchase <span id="productName2"></span>.
+		</p>
+
+	</div> <!-- end content -->
+	
+	<div id="buttons" class="deactivate_key">
+
+			<!-- 
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="enterkey.html">
+				<span>Enter Key</span>
+				</a>
+			</div>
+			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href="">
+				<span>Buy Now</span>
+				</a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial">
+				<span>&nbsp;Cancel&nbsp;</span>
+				</a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+	
+</body>
+</html>

@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>UltraEdit Activation</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+				setState();
+				$("#appTitle-expired").fadeOut('fast');
+				$("#appProgressBar").fadeOut('fast');
+				$("#appLicenseForm").fadeIn('slow');
+				
+				if (state == eLicenseExpired || state == eLicenseNotInitialized || buttonState == 1) {
+					//$("#appTitle").attr("innerHTML", trialExpiredMessage);
+					setFrameSize(440, 330)
+					$("#appTitle").fadeOut('fast');
+					$("#appTitle-expired").fadeIn('fast');
+				} else {
+					setFrameSize(440, 310)
+				}
+				
+		});
+
+		function handleClick()
+		{
+			if(document.licenseForm.licenseKey.value.length == 0)
+			{
+				alert("You must enter a license key!");
+			}
+			else
+			{	
+					window.external.MyLicenseKey = document.licenseForm.licenseKey.value;
+					$("#appLicenseForm").fadeOut('fast');
+					$("#appProgressBar").fadeIn('slow');
+					$("#enterKeyInfo").attr("innerHTML", "Activating...");
+					document.location="sa://activate?";
+			}
+			return false;
+		}
+	</script>
+	
+</head>
+<body>
+
+
+    <div id="top_pane">
+      <h1><span id="productName"></span> Registration</h1>
+    </div>
+
+
+	<div id="content">
+	<div id="appTitle">
+		<span class="prodName" id="enterKeyInfo">Enter Your Serial Number: <p class="enterKeyInstructions">Please enter your serial number then click activate.</p></span>
+	</div>
+
+	<div id="appTitle-expired">
+			<span class="prodName" id="enterKeyInfo">Your Trial Has Expired...<p class="enterKeyInstructions">Please click <b>buy now</b> to purchase a license.  Or, if you've already purchased a license, please enter your serial number below.</p></span>
+	</div>
+	
+
+	<div id="appProgressBar">
+		<b>One moment please...</b><br />
+		<img src="Progress.Wheel.03-2.gif"/>
+	</div>
+	
+	<div id="appLicenseForm">
+		<form name="licenseForm">
+			<div class="textwrapper">
+				<input type="text" id="licenseKey" maxlength="100" size="50"/>
+			</div>
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="#" onClick="handleClick();"><span>Activate!</span></a>
+			</div>
+		</form>
+	</div>
+
+  <p style="clear: all">Need Help? Click here: <a href="http://www.ultraedit.com/support.html" target="_blank">http://www.ultraedit.com/support.html</a>.</p>
+  
+  
+
+	<div id="buttons">
+
+			<!--
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="enterkey.html">
+				<span>Enter Key</span>
+				</a>
+			</div>
+			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href="">
+				<span>Buy Now</span>
+				</a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial">
+				<span>&nbsp;Cancel&nbsp;</span>
+				</a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+
+	</div> <!-- end content -->
+	
+
+	
+</body>
+</html>

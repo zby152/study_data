@@ -1,0 +1,441 @@
+body
+{
+	font-family: Arial, Verdana, Helvetica, sans-serif; 
+	font-size: 13px; 
+	margin: auto;
+}
+
+img
+{  
+	border-style: none;
+}
+
+.prodName { 
+
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+          	font-size: 1.4em; 
+          	color: #000000; 
+          	font-weight: bold; 
+          } 
+
+.getBtn { 
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+          	font-size: 12px; 
+          	color: #777777; 
+          	font-weight: bold; 
+         }
+
+.greySub { 
+
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 12px; 
+         	color: #000000; 
+         } 
+         
+.greySubOffline { 
+
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 12px; 
+         	color: #000000; 
+         	margin-top: -5px
+         } 
+         
+         
+.greySubLeft { 
+
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 12px; 
+         	color: #000000;
+		float:left;
+         } 
+
+.greySub_Error
+{ 
+
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 12px; 
+         	color: #000000; 
+         	text-decoration: underline;         	
+}
+
+
+.greySub_link
+{ 
+
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 10px; 
+         	color: #000000; 
+         	text-decoration: underline;         	         	
+         	margin-left:5px;
+         	
+}
+
+
+
+.btnSub { 
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 13px; 
+         	font-weight: bold; 
+         	color: #333333; 
+         } 
+
+.boldOrange { 
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+         	font-size: 14px; 
+         	font-weight: bold; 
+         	color: #AC071F; 
+         }
+         
+.fatOrange { 
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+    font-size: 16px; 
+    color: #AC071F; 
+    font-weight: bold; 
+} 
+          
+.boldOrangeProductName { 
+	font-family: Arial, Verdana, Helvetica, sans-serif; 
+	color: #000000; 
+	font-weight: bold; 
+    } 
+
+.boldOrangeLicenseKey { 
+	font-family: Arial, Verdana, Helvetica, sans-serif; 
+	font-size: 16px; 
+	color: #AC071f; 
+	font-weight: bold; 
+    } 
+
+.subTitle { 
+		font-family: Arial, Verdana, Helvetica, sans-serif; 
+          	font-size: 12px; 
+          	color: #000000;
+          }
+
+.buttonsBottom {
+		position:absolute;
+		bottom:10px;
+		left:10px
+}
+
+.buttonBottomCenter
+{
+		position:absolute;
+		bottom:10px;
+		left:10px
+		text-align:center;
+}
+
+#buttons
+{
+	position:relative;
+	bottom:10px;
+	right: 10px;
+	padding-top: 10px;
+	padding-left: 135px;
+}
+
+
+#appSideBar
+{
+
+	margin-left:0px;
+	margin-top:120px;
+	float:left;
+	width: 120px;
+}
+
+
+#activate_buttons
+{
+	margin-left:140px;
+	margin-top: 200px;
+
+}
+
+
+#padding
+{
+	margin-top:50px;
+}
+
+#btnPlayTrial
+{	
+	float:left;
+	padding: 5px;
+
+}
+
+#btnPlayNow
+{	
+	margin-left: 290px;
+	padding: 5px;
+
+}
+
+
+#btnBuy
+{
+	float:left;
+	padding: 5px;
+	
+}
+
+#btnEnterKey
+{
+	float:left;
+	padding: 5px;
+}
+
+#appTitle
+{
+	
+}
+
+#appContent
+{
+	margin-top:  10px;
+}
+
+#appContent2
+{
+	margin-top:  10px;
+}
+
+#appContent3
+{
+	margin-top:  10px;
+}
+
+
+#appErrorMeaning
+{
+	margin-top:  10px;
+}
+
+#appErrorMeaning .greySub {
+	color: #ac071f;
+}
+
+#appTrialMessage
+{
+
+}
+
+#appLicenseForm
+{
+
+}
+
+#appOfflineLicenseForm
+{
+	margin-left: 5px;
+	margin-top: 10px;
+}
+
+#appProgressBar
+{
+	margin-top: 10px;
+	
+}
+a.squarebutton
+{
+	background: transparent url('square-gray-left.gif') no-repeat top left;
+	display: block;
+	float: left;
+	font: normal 13px Arial; 
+	line-height: 15px; 
+	height: 23px; 
+	padding-left: 9px; 
+	text-decoration: none;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+a:link.squarebutton, a:visited.squarebutton, a:active.squarebutton{
+	color: #ffffff; 
+}
+
+a:link, a:visited, a:active {
+	color: #000000;
+}
+
+a.squarebutton span
+{
+	background: transparent url('square-gray-right.gif') no-repeat top right;
+	display: block;
+	padding: 4px 9px 4px 0; 
+	
+}
+
+a.squarebutton:hover
+{ 
+	background-position: bottom left;
+}
+
+a.squarebutton:hover span
+{ 
+	background-position: bottom right;
+}
+
+.buttonwrapper
+{ 
+	overflow: hidden; 
+	padding-left: 5px;
+}
+
+#buttons .buttonwrapper
+{ 
+	display: inline;
+}
+
+
+.buttonwrappertopmargin
+{ 
+	overflow: hidden; 
+	padding-left: 5px;	
+	width: 100%;
+	margin-top:50px;
+}
+
+
+.textwrapper
+{
+	float:left;	
+}
+
+.licwrapper
+{
+	float:left;
+	margin-left: 10px;
+	padding: 2px;
+}
+
+
+.textWrapperMargin
+{
+	margin-left:50px;
+	float:left;
+}
+
+
+
+#DASave
+{
+	margin-left: 0px;
+}
+
+#DAVisit
+{
+	margin-left: 0px;
+}
+
+#DAInstall
+{
+	margin-left: 0px;
+}
+
+#offlineLink1
+{
+	margin-left: 4px;
+}
+
+#offlineLink2
+{
+	margin-left: 6px;
+}
+
+#offlineLink3
+{
+	margin-left: 5px;
+}
+
+#offlineLink4
+{
+	margin-left: 5px;
+}
+
+#offlineLink1 b, #offlineLink2 b, #offlineLink3 b, #offlineLink4 b {
+	display: block;
+	margin-bottom: -5px;
+}
+
+
+
+#top_pane {
+height: 81px;
+padding: 3px;
+background-color: #265093;
+border-top: 1px solid #a3a3a3;
+border-right: 1px solid #a3a3a3;
+border-bottom: none;
+border-left: 1px solid #a3a3a3;
+color: #fff;
+background-image: url(top_pane_bg.png);
+background-repeat: no-repeat;
+background-position: 0% 0%;
+
+}
+
+#content {
+padding: 5px;
+padding-top: 20px;
+width: 430px;
+}
+
+#top_pane h1 {
+margin: 25px 0px 0px 0px;
+padding-left: 130px;
+font-size: 1.9em;
+font-weight: bold;
+}
+
+#top_pane h2 {
+margin: 0px 0px 2px 0px;
+padding-left: 130px;
+font-size: 1.4em;
+font-weight: bold;
+}
+
+
+.enterKeyInstructions {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.offline_instructions {
+	height: 180px;
+	overflow: auto;
+	padding: 7px;
+	margin-right: 2px;
+	border: 1px solid #cccccc;
+}
+
+.offline_instructions li {
+	margin-bottom: 8px;
+}
+
+#activation_options {
+	clear: both;
+	display: block;
+	padding-left: 10px;
+}
+
+
+.activation_success {
+	margin-left: 47px;
+}
+
+.offline_options {
+	margin-top: 10px;
+	margin-left: 43px;
+}
+
+.important {
+	color: #ac071f;
+	
+}
+
+.moment_lbl {
+	padding-left: 5px;
+}

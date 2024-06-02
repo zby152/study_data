@@ -1,0 +1,36 @@
+push 0x1040
+jmp 
+push 0x4000A4       //弹窗标题地址
+jmp
+push 0x4000B8		//弹窗内容地址
+push 0x0
+call x		
+jmp
+x:jmp dword ptr ds:[0x4000E8]   //IAT地址
+
+68 40 10 00 00
+EB XX
+68 A4 00 40 00
+EB XX
+68 B8 00 40 00
+6A 00
+E8 XX XX XX XX
+E8 XX
+FF 25 E8 00 40
+
+
+
+
+push 0x1040
+push 0x4000A4       //弹窗标题地址
+push 0x4000B8		//弹窗内容地址
+push 0x0
+call x		
+x:jmp dword ptr ds:[0x4000E8]   //IAT地址
+
+68 40 10 00 00
+68 A4 00 40 00
+68 B8 00 40 00
+6A 00
+E8 XX XX XX XX
+FF 25 E8 00 40 

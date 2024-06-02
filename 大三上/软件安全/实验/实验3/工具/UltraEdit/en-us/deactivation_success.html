@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>UltraEdit Deactivation</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script language="javascript" type="text/javascript">
+
+		$(document).ready(function()
+		{
+			setState();
+
+		});
+	</script>
+</head>
+<body onLoad="setFrameSize(440, 300)">
+
+
+    <div id="top_pane">
+      <h1><span id="productName"></span> Registration</h1>
+    </div>
+
+
+	<div id="content">
+
+	<div id="appTitle"><span class="prodName">License Deactivated</span></div>
+	<div id="appContent">
+		<p class="greySub">
+			You have successfully deactivated <span id="productName1"></span>
+		</p>
+	</div> 
+	<div id="appTrialMessage">
+		<p class="greySub" id="ptrialMessage">
+
+		</p>
+
+		<p class="greySub">
+			<b>Need to purchase a license?</b> <a href="" id="purchaseUrl2" target="_blank">Click here</a> to purchase <span id="productName2"></span>.
+		</p>
+	</div>
+	
+	<div id="buttons">
+
+			<!--
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="enterkey.html">
+				<span>Enter Key</span>
+				</a>
+			</div>
+			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href="">
+				<span>Buy Now</span>
+				</a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://close">
+				<span>&nbsp; Close &nbsp;</span>
+				</a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+
+	</div> <!-- end content -->
+	
+
+</body>
+</html>

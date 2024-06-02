@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UltraEdit 反启动</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		setState();
+		$("span.boldOrangeProductName").html(productName);
+		$("span.boldOrangeLicenseKey").html(licenseKey);
+		
+	});
+
+
+
+	</script>
+</head>
+<body onLoad="setFrameSize(440,220)">
+
+    <div id="top_pane">
+<h1><span id="productName"></span> 注册</h1>
+    </div>
+
+
+	<div id="content">
+
+	<div id="appTitle">
+		<span class="prodName">你的软体已启动。</span>
+	</div>
+
+	<div id="appContent">
+
+			<p class="greySub">请尽情使用<span class="boldOrangeProductName"></span>。 </p>
+			<!-- 			<p class="greySub"> 				Your serial number is: <span class="boldOrangeLicenseKey"></span> 			</p> 			-->
+
+
+	</div>
+
+
+<div id="buttons" class="activation_success">
+		<div class="buttonwrapper">
+			<a class="squarebutton" href="sa://continue_trial"><span>完成</span></a>
+		</div>
+
+<!-- 		<div class="buttonwrapper"> 			<a class="squarebutton" href="enterkey.html"> 			<span>Enter Key</span> 			</a> 		</div> --> <!-- 		<div class="buttonwrapper"> 			<a class="squarebutton" id="purchaseUrl" target="_blank" href=""> 			<span>Buy Now</span> 			</a> 		</div>	 -->
+		
+	</div> <!-- end buttons -->
+
+
+	</div> <!-- end content -->
+
+
+
+</body>
+</html>

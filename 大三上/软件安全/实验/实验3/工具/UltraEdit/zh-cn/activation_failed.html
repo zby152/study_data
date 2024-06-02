@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UltraEdit 启动</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="error.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+
+
+
+
+
+		$(document).ready(function(){
+
+
+					setState();
+					$("#appContent3").css('visibility','hidden');
+					var error = window.external.MyError;
+					//error = -1004;
+					$("#appTitle span").text("你的启动尝试" + productName + " 已失败");  // Note: productName is set in state.js
+					$("#appErrorMeaning p").text(getErrorText(error));
+					if (error == -1004)
+					{
+						$("a.deactivationTarget").attr("href", makeDeactivationTarget());
+						$("#appContent3").css('visibility','visible');
+						$("#appContent2").fadeOut('fast');
+					}
+					if (error == -1003)
+					{
+						$("#appContent3").css('visibility','visible');
+						$("#appContent2").fadeOut('fast');
+					}
+
+			});
+
+
+
+
+	</script>
+<body onLoad="setFrameSize(440, 370)">
+
+    <div id="top_pane">
+<h1><span id="productName"></span> 注册</h1>
+    </div>
+
+
+	<div id="content">
+	<div id="appTitle">
+	<span class="prodName" id="enterKeyInfo">输入你的序号：<p class="enterKeyInstructions">请输入你的序号然后点选启动。</p></span></div>
+
+
+
+	<div id="appContent">
+			<a href="#" onClick="handleError();">
+				<p class="greySub_Error">请点选这里以取得进一步资讯。</p>
+			</a>
+	</div>
+	
+	<div id="appErrorMeaning">
+		<p class="greySub"></p>
+	</div>
+
+
+
+	<div id="appContent2">
+		<a href="#" onClick="handleBack();">
+		<p class="greySub_Error">请点选这里再试一次。 </p>
+		</a>
+	</div>
+
+	<div id="appContent3" >
+		<!-- manage licenses 		<a href="#" class="deactivationTarget" target="_blank"> 					<p class="greySub_Error">Click Here To Manage Your Devices</p> 		</a> -->
+		<p><strong>需要购买一份授权？<br /></strong> <a id="purchaseUrl2" target="_blank">点选这里</a>以购买一份授权<span id="productName1"></span>。
+	</div>
+
+<p>需要帮助？点选这里： <a href="http://www.ultraedit.com/support.html" target="_blank">http://www.ultraedit.com/support.html</a>.</p>
+
+
+	<div id="buttons">
+
+			<!-- 			<div class="buttonwrapper"> 				<a class="squarebutton" href="enterkey.html"> 				<span>Enter Key</span> 				</a> 			</div> 			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href=""><span>立即购买</span></a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial"><span>取消</span></a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+
+
+	</div> <!-- end content -->
+
+
+</body>
+</html>

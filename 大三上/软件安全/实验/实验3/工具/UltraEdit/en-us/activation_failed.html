@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+    <title>UltraEdit Activation</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="uniloc.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="error.js"></script>
+	<script type="text/javascript" src="state.js"></script>
+	<script type="text/javascript" src="idmFunc.js"></script>
+	<script type="text/javascript" src="strings.js"></script>
+	<script type="text/javascript">
+
+
+
+
+
+		$(document).ready(function(){
+
+
+					setState();
+					$("#appContent3").css('visibility','hidden');
+					var error = window.external.MyError;
+					//error = -1004;
+					$("#appTitle span").text("Your Attempt to Activate " + productName + " has Failed");  // Note: productName is set in state.js
+					$("#appErrorMeaning p").text(getErrorText(error));
+					if (error == -1004)
+					{
+						$("a.deactivationTarget").attr("href", makeDeactivationTarget());
+						$("#appContent3").css('visibility','visible');
+						$("#appContent2").fadeOut('fast');
+					}
+					if (error == -1003)
+					{
+						$("#appContent3").css('visibility','visible');
+						$("#appContent2").fadeOut('fast');
+					}
+
+			});
+
+
+
+
+	</script>
+<body onLoad="setFrameSize(440, 370)">
+
+    <div id="top_pane">
+      <h1><span id="productName"></span> Registration</h1>
+    </div>
+
+
+	<div id="content">
+	<div id="appTitle">
+	<span class="prodName" id="enterKeyInfo">Enter Your Serial Number: <p class="enterKeyInstructions">Please enter your serial number then click activate.</p></span></div>
+
+
+
+	<div id="appContent">
+			<a href="#" onClick="handleError();">
+				<p class="greySub_Error">Please click here for additional information.</p>
+			</a>
+	</div>
+	
+	<div id="appErrorMeaning">
+		<p class="greySub"></p>
+	</div>
+
+
+
+	<div id="appContent2">
+		<a href="#" onClick="handleBack();">
+		<p class="greySub_Error">Please click here to try again. </p>
+		</a>
+	</div>
+
+	<div id="appContent3" >
+		<!-- manage licenses
+		<a href="#" class="deactivationTarget" target="_blank">
+					<p class="greySub_Error">Click Here To Manage Your Devices</p>
+		</a> -->
+		<p><strong>Need to purchase a license?<br /></strong> <a id="purchaseUrl2" target="_blank">Click here</a> to purchase a license of <span id="productName1"></span>.
+	</div>
+
+  <p>Need Help? Click here: <a href="http://www.ultraedit.com/support.html" target="_blank">http://www.ultraedit.com/support.html</a>.</p>
+
+
+	<div id="buttons">
+
+			<!--
+			<div class="buttonwrapper">
+				<a class="squarebutton" href="enterkey.html">
+				<span>Enter Key</span>
+				</a>
+			</div>
+			-->
+	
+			<div class="buttonwrapper">
+				<a class="squarebutton" id="purchaseUrl" target="_blank" href="">
+				<span>Buy Now</span>
+				</a>
+			</div>	
+			
+			<div class="buttonwrapper" id="continueTrial">
+				<a class="squarebutton" href="sa://continue_trial">
+				<span>&nbsp;Cancel&nbsp;</span>
+				</a>
+			</div>
+	
+	</div> <!-- end buttons -->
+
+
+
+	</div> <!-- end content -->
+
+
+</body>
+</html>
