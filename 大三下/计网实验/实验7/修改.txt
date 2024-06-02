@@ -1,0 +1,172 @@
+######路由器1##########
+
+配置接口的IP地址
+en
+conf t
+int g 0/1
+ip add 202.114.65.1 255.255.255.252
+exit
+int g 0/2
+ip add 202.114.65.5 255.255.255.252
+exit
+
+OSPF协议
+route ospf
+network 202.114.65.0 0.0.0.3 area 0
+network 202.114.65.4 0.0.0.3 area 0
+exit
+
+########路由器2#########
+
+配置接口的IP地址
+en
+conf t
+int g 0/1
+ip add 202.114.64.1 255.255.255.0
+exit
+int g 0/2
+ip add 202.114.65.9 255.255.255.252
+exit
+int g 0/3
+ip add 202.114.65.2 255.255.255.252
+exit
+
+OSPF协议
+route ospf
+network 202.114.65.0 0.0.0.3 area 0
+network 202.114.65.8 0.0.0.3 area 0
+network 202.114.64.0 0.0.0.255 area 20
+exit
+
+#############路由器3##########
+
+配置各端口的 IP
+en 
+conf t
+int g 0/1
+ip add 202.114.65.10 255.255.255.252
+exit
+int g 0/2
+ip add 202.114.65.13 255.255.255.252
+exit
+int g 0/3
+ip add 202.114.65.17 255.255.255.252
+exit
+int g 0/1
+ip add 202.114.65.10 255.255.255.252
+exit
+int g 0/0
+ip add 202.114.65.6 255.255.255.252
+exit
+
+配置OSPF
+router ospf 10
+redistribute rip metric 20 subnets
+network 202.114.65.8 0.0.0.3 area 0
+network 202.114.65.4 0.0.0.3 area 0
+
+RIPv2
+router rip
+version 2
+network 202.114.65.16
+network 202.114.65.12
+no auto-summary
+redistribute ospf 10 metri 2
+
+
+
+######三层交换机s1########
+
+***配置接口0/1***
+int g 0/1
+no switchport
+ip add 202.114.65.18 255.255.255.252
+
+int g 0/2
+no switchport
+ip add 210.42.112.3 255.255.255.0
+
+配置RIP
+duplex auto
+speed auto
+exit
+router rip 
+version 2
+no auto-summary
+network 202.114.65.16
+network 210.42.112.0
+exit
+
+
+***vrrp配置***
+vrrp 10 ip 210.41.112.1
+vrrp 11 ip 210.41.112.2
+vrrp 10 priority 120
+
+
+开启DHCP
+service dhcp
+#####################################
+
+
+#三层交换机Switch2 
+
+int g 0/1
+no switchport
+ip add 202.114.65.14 255.255.255.252
+int g 0/2
+switchport mode trunk
+exit
+duplex auto
+speed auto
+exit
+
+router rip 
+version 2
+no auto-summary
+network 202.114.65.12
+network 210.42.112.0
+exit
+
+配置VRRP协议：
+vrrp 10 ip 210.42.112.1
+vrrp 11 ip 210.42.112.2
+vrrp 11 priority 120
+exit
+
+配置DHCP协议：
+service dhcp
+int vlan 10
+exit
+ip dhcp pool vlan10
+network 210.42.112.0 255.255.255.0
+default-router 210.42.112.2
+end
+
+#二层交换机1 Switch3
+
+在配置时，需要配置其所处的 VLAN 信息，
+即将 Switch3 与 Switch1 和 Switch2 相连的端口配置为 trunk 模式，
+将 Switch3 与PC1和PC2相连的端口配置为同一VLAN 下（本示例为 VLAN10）
+
+en
+conf t
+vlan 10
+exit
+int range gi 0/1-2
+switchport mode trunk
+exit
+int range gi 0/3-4
+switchport access vlan 10
+exit
+
+截图
+三层交换机
+show ip route
+show vrrp brief
+
+路由器路由表
+show ip route
+
+3层交换机2
+show ip dhcp binding

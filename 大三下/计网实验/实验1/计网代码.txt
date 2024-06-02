@@ -1,0 +1,71 @@
+# 1号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.64.1 255.255.255.0
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.9 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.65.2 255.255.255.252
+no shutdown
+exit
+
+ip route 202.114.64.0 255.255.255.0 g 0/0 202.114.64.200
+ip route 202.114.66.0 255.255.255.0 g 0/2 202.114.65.1
+ip route 202.114.67.0 255.255.255.0 g 0/1 202.114.65.10
+
+
+# 2号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.65.1 255.255.255.252
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.5 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.66.1 255.255.255.0
+no shutdown
+exit
+
+ip route 202.114.64.0 255.255.255.0 g 0/0 202.114.65.2
+ip route 202.114.66.0 255.255.255.0 g 0/2 202.114.66.3
+ip route 202.114.66.0 255.255.255.0 g 0/2 202.114.66.2
+ip route 202.114.67.0 255.255.255.0 g 0/1 202.114.65.6
+
+# 3号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.65.10 255.255.255.252
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.6 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.67.1 255.255.255.0
+no shutdown
+exit
+
+ip route 202.114.64.0 255.255.255.0 g 0/0 202.114.65.9
+ip route 202.114.66.0 255.255.255.0 g 0/1 202.114.65.5
+ip route 202.114.67.0 255.255.255.0 g 0/2 202.114.67.3
+ip route 202.114.67.0 255.255.255.0 g 0/2 202.114.67.2

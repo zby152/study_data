@@ -1,0 +1,8 @@
+pc1 ->pc4
+pc2 ->pc4
+pc4 访问服务器
+pc2 访问服务器
+
+pc2 访问tftp服务
+pc4 访问tftp服务
+

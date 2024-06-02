@@ -1,0 +1,94 @@
+*************配置   R1 ************
+
+--------   IP  -------
+en
+conf t
+hostname R1
+
+in gi 0/0
+ip add 202.114.66.2 255.255.255.252
+in gi 0/1
+ip add 210.42.113.1 255.255.255.0
+
+---------   RIP  -------
+router rip
+version 2
+network 202.114.66.0 255.255.255.252
+network 210.42.113.0 255.255.255.0
+
+----------  ACL  --------
+ip access-list standard 1
+10 deny host 210.42.112.3
+20 permit any
+in gi 0/0
+ip access-group 1 in
+
+
+*************配置   R2 ************
+
+--------   IP  -------
+en
+conf t
+hostname R2
+
+in gi 0/0
+ip add 202.114.67.2 255.255.255.252
+in gi 0/1
+ip add 210.42.112.1 255.255.255.252
+
+---------   RIP  -------
+router rip
+version 2
+network 202.114.67.0 255.255.255.252
+network 210.42.112.0 255.255.255.0
+
+----------  ACL  --------
+ip access-list standard 2
+10 permit host 210.42.112.2
+20 deny any
+exit
+
+line vty 0 4
+access-class 2 in
+
+enable password 111
+line vty 0 4
+login local 
+exit
+
+
+*************配置   R3 ************
+
+--------   IP  -------
+en 
+conf t
+hostname R3
+
+in gi 0/0 
+ip add 202.114.68.1 255.255.255.0
+in gi 0/1
+ip add 202.114.66.1 255.255.255.252
+in gi 0/2
+ip add 202.114.67.1 255.255.255.252
+
+---------   RIP  -------
+router rip
+version 2
+network 202.114.68.0 255.255.255.0
+network 202.114.66.0 255.255.255.252
+network 202.114.67.0 255.255.255.252
+
+----------  ACL  --------
+ip access-list extended 100
+10 permit tcp 210.42.113.0 0.0.0.255 host 202.114.68.100 eq www
+20 deny tcp any host 202.114.68.100 eq www
+30 permit udp 210.42.112.0 0.0.0.255 host 202.114.68.100 eq tftp
+40 deny udp any host 202.114.68.100 eq tftp 
+
+in gi 0/0 
+ip access-group 100 out
+
+
+
+
+show access-list

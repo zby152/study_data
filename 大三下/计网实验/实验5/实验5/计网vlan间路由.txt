@@ -1,0 +1,256 @@
+首先需要为路由器的每个端口分配IP地址以及子网掩码，对于路由器1，还需要配置子接口，使每一个子接口都充当一个VLAN网段中主机的网关，利用路由器的三层路由功能可以实现不同VLAN间的通信。
+配置端口IP地址及子网掩码的指令为：
+Ip address + IP地址 + 子网掩码
+配置子接口的指令为（假设为1端口配置，且vlan为10）：
+Int gig 0/1.10
+Desc
+Description vlan10
+Encapsulation dotlq 10
+Ip address + IP地址 + 子网掩码
+No shut
+Exit
+
+
+以上这张图中，如果三层交换机1和二层交换机的连接是trunk模式，那么二层交换机1和二层交换机2中的trunk连线就可以被省略。将图中连接方式称为方案一，将省略连线的方案称为方案二。在实际实验中，我们对两种实现方式都进行了尝试，并且最终都能实现几个PC相互ping通的要求。
+实验中没有要求ping WWW服务器，考虑到机架设备有限，所以我们实际连线中忽略了WWW服务器。
+
+
+#路由器1
+en
+conf t
+hostname R1
+int gig 0/2
+ip address 202.114.65.5 255.255.255.252
+exit
+int gig 0/3
+ip address 202.114.65.1 255.255.255.252
+exit
+
+int gig 0/1.10
+desc
+description vlan10
+encapsulation dotlq 10
+ip address 202.114.66.1 255.255.255.0
+no shut
+exit
+
+int gig 0/1.20
+desc
+description vlan20
+encapsulation dotlq 20
+ip address 202.114.67.1 255.255.255.0
+no shut
+exit
+
+
+***路由器1~3和三层交换机1通过RIP协议实现通信。***
+***这里的设置与之前的RIP协议部分是相同的。***
+***指令总体分为两部分，端口IP地址的分配以及RIP协议设置***
+
+router rip 
+version 2
+no auto-summary
+network 202.114.65.0 255.255.255.252
+network 202.114.65.4 255.255.255.252
+network 202.114.66.0 255.255.255.0
+network 202.114.67.0 255.255.255.0
+exit
+
+
+
+
+#路由器2
+en
+conf t
+hostname R2
+int gig 0/1
+ip address 202.114.65.2 255.255.255.252
+exit
+int gig 0/2
+ip address 202.114.64.1 255.255.255.0
+exit
+int gig 0/3
+ip address 202.114.65.9 255.255.255.252
+exit
+
+
+
+***路由器1~3和三层交换机1通过RIP协议实现通信。***
+***这里的设置与之前的RIP协议部分是相同的。***
+***指令总体分为两部分，端口IP地址的分配以及RIP协议设置***
+
+router rip 
+version 2
+no auto-summary
+network 202.114.65.0 255.255.255.252
+network 202.114.65.8 255.255.255.252
+network 202.114.64.0 255.255.255.0
+exit
+
+
+#路由器3
+en
+conf t
+hostname R3
+int gig 0/1
+ip address 202.114.65.6 255.255.255.252
+exit
+int gig 0/2
+ip address 202.114.65.10 255.255.255.252
+exit
+int gig 0/3
+ip address 202.114.65.17 255.255.255.252
+exit
+
+
+
+***路由器1~3和三层交换机1通过RIP协议实现通信。***
+***这里的设置与之前的RIP协议部分是相同的。***
+***指令总体分为两部分，端口IP地址的分配以及RIP协议设置***
+
+router rip 
+version 2
+no auto-summary
+network 202.114.65.16 255.255.255.252
+network 202.114.65.8 255.255.255.252
+network 202.114.65.4 255.255.255.252
+exit
+
+#三层交换机2
+en
+conf t
+hostname SW3-2
+
+***定义trunk***
+int gi 0/1
+switchport mode trunk
+exit
+
+***划分vlan***
+vlan 10
+vlan 20
+exit
+
+int gi 0/2
+switchport access vlan 10
+exit
+
+int gi 0/3
+switchport access vlan 20
+exit
+
+
+#三层交换机1
+三层交换机1和两个两层交换机以及PC3~6，这几个构成的网络主要涉及跨交换机vlan
+
+en
+conf t
+hostname SW3-1
+vlan 30
+vlan 40
+exit
+
+int vlan 30
+ip address 202.114.68.1 255.255.255.0
+no shutdown
+exit
+
+int vlan 40
+ip address 202.114.69.1 255.255.255.0
+no shutdown 
+exit
+
+***在SW3-1和SW2-1，SW3-1和SW2-2之间采用access mode进行分配***
+***此时需要配合SW2-1和SW2-2之间的trunk连接配合才能实现通信***
+
+//router rip 
+//version 2
+//no auto-summary
+//network 202.114.65.16 255.255.255.252
+//exit
+
+int gig 0/2
+switchport mode access
+switchport access vlan 40
+exit
+
+int gig 0/3
+switchport mode access
+switchport access vlan 30
+exit
+
+***在SW3-1和SW2-1，SW3-1和SW2-2之间以trunk mode连接***
+***(此时两个二层交换机之间不需要trunk）***
+int gi 0/2
+switchport mode trunk
+exit
+
+int gi 0/3
+switchport mode trunk
+exit
+
+int gi 0/1
+no switchport
+ip address 202.114.65.18 255.255.255.252
+duplex auto
+speed auto
+exit
+
+router rip 
+version 2
+no auto-summary
+network 202.114.65.16 255.255.255.252
+network 202.114.68.0 255.255.255.0
+network 202.114.69.0 255.255.255.0
+***这里需要注意将202.114.68.0/24和202.114.69.0/24两个子网也加入进来，否则网络通信会有问题。***
+exit
+
+
+#二层交换机1
+
+en
+conf t
+vlan 30
+vlan 40
+exit
+
+int gi 0/2 
+switchport access vlan 30
+exit
+
+int gi 0/3
+switchport access vlan 40
+exit
+
+int gi 0/1
+switchport mode trunk
+exit
+
+int gi 0/4
+switchport mode trunk
+exit
+
+#二层交换机1
+
+en 
+conf t
+vlan 30
+vlan 40
+exit
+
+int gi 0/2
+switchport access vlan30
+exit
+
+int gi 0/3
+switchport access vlan40
+exit
+
+int gi 0/4
+switchport mode trunk
+exit
+
+int gi 0/1
+switchport access vlan30
+exit
+

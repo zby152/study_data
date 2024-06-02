@@ -1,0 +1,114 @@
+#路由器1(像往常一样直接配置端口IP即可)
+
+en
+conf t
+int gi 0/1
+ip add 202.114.77.1 255.255.255.0
+no shutdown
+exit
+
+int gi 0/2
+ip add 202.114.65.1 255.255.255.0
+no shutdown
+exit
+
+int gig 0/3
+ip add 202.114.66.1 255.255.255.0
+exit
+
+show ip route【截图】
+
+#路由器2
+首先配置路由器2的各接口IP，然后定义IP池，
+并定义nat的内网和外网位置。
+接下来指明只有192.168.1.0网段的计算机通过IP池上网。
+通过ip nat inside source static tcp 命令将WWW2服务器的内网地址转换为外网地址，
+最后设置默认路由即可。
+
+en
+conf t
+int gi 0/1
+ip add 202.114.65.2 255.255.255.0
+exit
+
+no int vlan 1
+int g 0/0
+ip add 192.168.1.1 255.255.255.0
+exit
+
+ip route 202.114.66.0 255.255.255.0 202.114.65.1
+ip route 202.114.77.0 255.255.255.0 202.114.65.1
+
+int g 0/1
+ip nat outside
+int g 0/0
+ip nat inside
+exit
+ip nat pool mypool 202.114.65.5 202.114.65.12 netmask 255.255.255.0
+
+ip nat inside source static 192.168.1.100 202.114.65.100
+access-list 1 permit 192.168.1.1 0.0.0.255
+ip nat inside source list 1 pool mypool 
+
+
+
+#路由器3
+同样需要配置IP地址、开启静态路由以及NAT重载
+
+en
+conf t
+int g 0/0
+ip add 192.168.2.1 255.255.255.0
+no shutdown
+exit
+
+int g 0/1
+ip add 202.114.66.2 255.255.255.0
+no shutdown
+exit
+
+ip route 202.114.65.0 255.255.255.0 202.114.66.1
+ip route 202.114.77.0 255.255.255.0 202.114.66.1
+
+ip access-list standard 10
+access-list 10 permit 192.168.2.0 0.0.0.255
+exit
+ip nat inside source list 10 int g 0/1 overload
+
+int g 0/1
+ip nat outside
+int g 0/0 
+ip nat inside
+exit
+
+#配置二层交换机2
+对于交换机，我们直接配置各接口IP地址即可。在二层交换机2上
+我们还需开启端口安全配置，
+保证只有PC2以192.168.1.100连接以及仅能4台主机连接端口2
+
+en
+conf t
+
+int g 0/3
+switchport port-security
+sw port-security maximum 4
+switchport port-security mac-address 00E0.4C68.95E5
+
+int gig 0/2
+switchport port-security
+switch port-security binding 00E0.4C68.7409 vlan 1 192.168.2.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

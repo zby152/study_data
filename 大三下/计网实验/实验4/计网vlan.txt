@@ -1,0 +1,121 @@
+本实验中用到的配置命令如下：
+1.	开启/关闭设备VLAN特性：vlan vlan_id
+2.	查看VLAN视图：show vlan [id vlan-id]
+3.	删除VLAN：no vlan vlan_id
+4.	选择以太网接口并进入配置模式：interface gi [mod-num/port-num]
+5.	查看指定以太网接口的配置信息：show interface [interfa-id][counters|description|status|switchport|trunk]
+6.	配置多个以太网接口：interface range [port-range]
+7.	向VLAN中添加/删除接口：switchport access vlan [vlan-id] no  switch access vlan
+8.	设置接口的IP地址：ip address ip-address mask   no ip address
+9.	更改二层接口模式：switchport mode {access|trunk} no switchport mode
+10.	VLAN描述：description strina  undo description
+
+
+#三层交换机1
+enable
+conf t
+vlan 10
+vlan 20
+vlan 30
+exit
+
+interface range gig 0/1
+switchport access vlan 10
+switchport access vlan 20
+exit
+
+interface range gig 0/2
+switchport access vlan 20
+exit
+
+interface range gig 0/3
+switchport access vlan 30
+exit
+
+interface range gig 0/4
+switchport access vlan 10
+switchport access vlan 30
+exit
+
+interface range gig 0/1
+switchport mode trunk
+exit
+interface range gig 0/4
+switchport mode trunk
+exit
+
+
+
+#二层交换机1
+enable
+conf t
+hostname s1
+vlan 10
+vlan 20
+vlan 30
+exit
+
+interface range gig 0/1
+switchport access vlan 10
+switchport access vlan 20
+switchport access vlan 30
+exit
+
+interface range gig 0/2
+switchport access vlan 30
+exit
+
+interface range gig 0/3
+switchport access vlan 10
+exit
+
+int range gi 0/1
+switchport mode trunk
+exit
+
+
+
+
+#二层交换机2
+enable
+conf t
+hostname s2
+vlan 10
+vlan 20
+vlan 30
+exit
+
+interface range gig 0/1
+switchport access vlan 10
+switchport access vlan 20
+switchport access vlan 30
+exit
+
+interface range gig 0/2
+switchport access vlan 10
+exit
+
+interface range gig 0/3
+switchport access vlan 20
+exit
+
+int range gi 0/1
+switchport mode trunk
+exit
+
+
+【截图合集】
+机架图
+连线图
+
+三台交换机各自的配置截图
+三台交换机各自的show vlan截图
+
+6台PC机的ip配置图
+
+4张ping的截图
+PC1 -> PC5
+PC2 -> PC6
+PC3 -> PC4
+PC6 -> PC5
+

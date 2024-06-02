@@ -1,0 +1,215 @@
+#1号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.64.1 255.255.255.0
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.9 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.65.1 255.255.255.252
+no shutdown
+exit
+
+
+
+//静态路由
+//Router1(config)#ip route 目标网络  子网掩码  下一跳地址(接口)
+
+ip route 202.114.64.0 255.255.255.0 202.114.64.200
+ip route 202.114.66.0 255.255.255.240 202.114.65.2
+ip route 202.114.66.32 255.255.255.240 202.114.65.10
+ip route 202.114.66.16 255.255.255.240 202.114.65.2
+show ip route
+截图
+
+
+
+//启用RIP协议
+	"""
+	主要使用的指令如下：
+	router rip： 启用RIP协议
+	no auto-summary： 关闭子网汇总
+	network [接口网段]： 指定接收发送路由表的接口网段范围
+	【保证开始时进入 RouterA（config）#  状态再输入以下指令】
+	"""
+router rip
+no auto-summary
+version 2
+network 202.114.64.0 255.255.255.0
+network 202.114.65.8 255.255.255.252
+network 202.114.65.0 255.255.255.252
+exit
+
+show ip rip 
+截图
+
+
+//启用RIPv2身份验证
+	采用md5的方式对RIP协议进行身份验证，主要使用的指令如下：
+	key chain name：启用钥匙链
+	key id：定义钥匙id
+	key-string [密码]：定义密码
+	ip rip authentication mode md5：启用md5加密
+	【保证开始时进入 RouterA（config）#  状态再输入以下指令】
+interface gig 0/1
+ip rip authentication mode md5
+key chain authRIP
+key 1
+key-string 1234
+int gig 0/1
+$ication key-chain authRIP【第一个符号不确定，看终端是否显示】
+【【结束这部分注意截图】】
+
+
+
+
+
+
+
+#2号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.65.2 255.255.255.252
+no shutdown 
+exit
+
+interface g 0/1
+ip add 202.114.65.5 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.66.17 255.255.255.240
+no shutdown
+exit
+
+interface g 0/3
+ip add 202.114.66.1 255.255.255.240
+no shutdown
+exit
+
+ip route 202.114.64.0 255.255.255.0 202.114.65.1
+ip route 202.114.66.0 255.255.255.240 202.114.66.2
+ip route 202.114.66.0 255.255.255.240 202.114.66.3
+ip route 202.114.66.16 255.255.255.240 202.114.66.18
+ip route 202.114.66.32 255.255.255.240 202.114.65.6
+
+shou ip route
+截图
+
+
+//启用RIP协议
+	主要使用的指令如下：
+	router rip： 启用RIP协议
+	no auto-summary： 关闭子网汇总
+	network [接口网段]： 指定接收发送路由表的接口网段范围
+	【保证开始时进入 RouterB（config）#  状态再输入以下指令】
+router rip
+no auto-summary
+version 2
+network 202.114.65.0 255.255.255.252
+network 202.114.65.4 255.255.255.252
+network 202.114.66.0 255.255.255.240
+network 202.114.66.16 255.255.255.240
+exit
+
+show ip rip
+截图
+
+
+//启用RIPv2身份验证
+	采用md5的方式对RIP协议进行身份验证，主要使用的指令如下：
+	key chain name：启用钥匙链
+	key id：定义钥匙id
+	key-string [密码]：定义密码
+	ip rip authentication mode md5：启用md5加密
+	【保证开始时进入 RouterB（config）#  状态再输入以下指令】
+interface gig 0/1
+ip rip authentication mode md5
+key chain authRIP
+key 1
+key-string 1234
+int gig 0/1
+$ication key-chain authRIP【第一个符号不确定，看终端是否显示】
+截图
+
+
+
+
+
+#3号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.65.10 255.255.255.252
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.6 255.255.255.252
+no shutdown 
+exit
+
+interface g 0/2
+ip add 202.114.66.33 255.255.255.240
+no shutdown 
+exit
+
+ip route 202.114.64.0 255.255.255.252 202.114.65.9
+ip route 202.114.66.0 255.255.255.240 202.114.65.5
+ip route 202.114.66.16 255.255.255.240 202.114.65.5
+ip route 202.114.66.32 255.255.255.240 202.114.66.34
+ip route 202.114.66.32 255.255.255.240 202.114.66.35
+
+show ip route
+截图
+
+
+
+
+//启用RIP协议
+	主要使用的指令如下：
+	router rip： 启用RIP协议
+	no auto-summary： 关闭子网汇总
+	network [接口网段]： 指定接收发送路由表的接口网段范围
+	【保证开始时进入 RouterC（config）#  状态再输入以下指令】
+router rip
+no auto-summary
+version 2
+network 202.114.65.8 255.255.255.252
+network 202.114.65.4 255.255.255.252
+network 202.114.66.32 255.255.255.240
+exit
+
+show ip rip
+截图
+
+
+
+
+
+//启用RIPv2身份验证
+	采用md5的方式对RIP协议进行身份验证，主要使用的指令如下：
+	key chain name：启用钥匙链
+	key id：定义钥匙id
+	key-string [密码]：定义密码
+	ip rip authentication mode md5：启用md5加密
+	【保证开始时进入 RouterC（config）#  状态再输入以下指令】
+interface gig 0/1
+ip rip authentication mode md5
+key chain authRIP
+key 1
+key-string 1234
+int gig 0/1
+$ication key-chain authRIP【第一个符号不确定，看终端是否显示】
+【【结束这部分注意截个图】】

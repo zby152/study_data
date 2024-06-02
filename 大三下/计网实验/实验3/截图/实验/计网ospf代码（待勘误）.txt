@@ -1,0 +1,155 @@
+#1号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.64.1 255.255.255.0
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.9 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.65.1 255.255.255.252
+no shutdown
+exit
+
+**********配置路由器的OSPF协议********************
+**********通过route ospf +数字以及network + 网段+子网掩码+area+区域号等指令来启动OSPF协议，并公布自己直连的网段。**************
+         命令	                                                                                                        说明
+route ospf <进程id>	                                                   启用ospf进程(进程id缺省为1)
+network <网段> <逆子网掩码> area <端口所在区号> 	指定路由器端口直连网络相关信息
+**********注意，表格中逆子网掩码的含义是，子网掩码取反。*******************************
+
+route ospf
+network 202.114.65.0 0.0.0.3 area 0
+network 202.114.65.8 0.0.0.3 area 0
+network 202.114.64.0 0.0.0.255 area 30
+exit
+
+
+#2号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.65.2 255.255.255.252
+no shutdown 
+exit
+
+interface g 0/1
+ip add 202.114.65.5 255.255.255.252
+no shutdown
+exit
+
+interface g 0/2
+ip add 202.114.65.13 255.255.255.252
+no shutdown
+exit
+
+**********配置路由器的OSPF协议********************
+**********通过route ospf +数字以及network + 网段+子网掩码+area+区域号等指令来启动OSPF协议，并公布自己直连的网段。**************
+         命令	                                                                                                        说明
+route ospf <进程id>	                                                   启用ospf进程(进程id缺省为1)
+network <网段> <逆子网掩码> area <端口所在区号> 	指定路由器端口直连网络相关信息
+**********注意，表格中逆子网掩码的含义是，子网掩码取反。*******************************
+
+route ospf
+network 202.114.65.0 0.0.0.3 area 0
+network 202.114.65.4 0.0.0.3 area 0
+network 202.114.65.12 0.0.0.3 area 10
+exit
+
+
+
+
+
+#3号路由器
+enable
+config terminal
+
+interface g 0/0
+ip add 202.114.65.10 255.255.255.252
+no shutdown
+exit
+
+interface g 0/1
+ip add 202.114.65.6 255.255.255.252
+no shutdown 
+exit
+
+interface g 0/2
+ip add 202.114.65.17 255.255.255.252
+no shutdown 
+exit
+
+**********配置路由器的OSPF协议********************
+**********通过route ospf +数字以及network + 网段+子网掩码+area+区域号等指令来启动OSPF协议，并公布自己直连的网段。**************
+         命令	                                                                                                        说明
+route ospf <进程id>	                                                   启用ospf进程(进程id缺省为1)
+network <网段> <逆子网掩码> area <端口所在区号> 	指定路由器端口直连网络相关信息
+**********注意，表格中逆子网掩码的含义是，子网掩码取反。*******************************
+
+route ospf
+network 202.114.65.8 0.0.0.3 area 0
+network 202.114.65.4 0.0.0.3 area 0
+network 202.114.65.16 0.0.0.3 area 20
+exit
+
+
+
+
+#三层交换机1
+
+enable
+config
+hostname S1
+
+interface gi 0/1
+no switchport
+ip address 202.114.65.14 255.255.255.252
+duplex auto
+speed auto
+
+interface gi 0/2
+no switchport
+ip address 202.114.68.1 255.255.255.0
+duplex auto
+speed auto
+exit
+
+***三层交换机的OSPF协议配置如下：值得注意的是，这里交换机需要使用ip routing指令进入路由协议配置阶段。******
+ip routing
+route ospf 100
+network 202.114.65.12 0.0.0.3 area 10
+network 202.114.68.0 0.0.0.255 area 10
+exit
+
+
+#三层交换机2
+enable
+config
+hostname S2
+
+interface gi 0/1
+no switchport
+ip address 202.114.65.18 255.255.255.252
+duplex auto
+speed auto
+
+interface gi 0/2
+no switchport
+ip address 202.114.69.1 255.255.255.0
+duplex auto
+speed auto
+exit
+
+***三层交换机的OSPF协议配置如下：值得注意的是，这里交换机需要使用ip routing指令进入路由协议配置阶段。******
+ip routing
+route ospf 100
+network 202.114.65.16 0.0.0.3 area 20
+network 202.114.69.0 0.0.0.255 area 20
+exit

