@@ -1,0 +1,98 @@
+{
+  "projectVersion": 1,
+  "files": [
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes40.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes41.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes42.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes43.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes44.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes45.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes46.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes47.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes02.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes03.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes04.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes05.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes06.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes07.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes08.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes09.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes10.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes11.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes12.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes13.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes14.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes15.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes16.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes17.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes18.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes19.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes20.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes21.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes22.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes23.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes24.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes25.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes26.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes27.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes28.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes29.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes30.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes31.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes32.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes33.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes34.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes35.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes36.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes37.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes38.dex",
+    "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes39.dex"
+  ],
+  "treeExpansions": [
+    [
+      "android",
+      "源代码",
+      "47 files"
+    ],
+    [
+      "system",
+      "android",
+      "源代码",
+      "47 files"
+    ]
+  ],
+  "codeData": {
+    "comments": [],
+    "renames": []
+  },
+  "openTabs": [
+    {
+      "type": "class",
+      "tabPath": "android.media.MediaSession2Service",
+      "subPath": "java",
+      "caret": 2422,
+      "view": {
+        "x": 0,
+        "y": 1041
+      }
+    },
+    {
+      "type": "class",
+      "tabPath": "com.example.how_debug.MainActivity",
+      "subPath": "java",
+      "caret": 2405,
+      "view": {
+        "x": 0,
+        "y": 288
+      }
+    }
+  ],
+  "activeTab": 1,
+  "cacheDir": "D:\\software\\frida-dexdump\\frida_dexdump\\android.process.acore\\classes40.dex.cache",
+  "enableLiveReload": false,
+  "searchHistory": [
+    "flag{",
+    "onCreate"
+  ]
+}

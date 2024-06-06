@@ -1,0 +1,72 @@
+{
+  "projectVersion": 1,
+  "files": [
+    "week 2 day3题目\\1qiantang.apk"
+  ],
+  "treeExpansions": [
+    [
+      "com",
+      "源代码",
+      "1qiantang.apk"
+    ],
+    [
+      "ttzgame",
+      "com",
+      "源代码",
+      "1qiantang.apk"
+    ],
+    [
+      "pay",
+      "ttzgame",
+      "com",
+      "源代码",
+      "1qiantang.apk"
+    ],
+    [
+      "com.ttzgame.pay.b",
+      "pay",
+      "ttzgame",
+      "com",
+      "源代码",
+      "1qiantang.apk"
+    ],
+    [
+      "com.ttzgame.pay.a",
+      "pay",
+      "ttzgame",
+      "com",
+      "源代码",
+      "1qiantang.apk"
+    ]
+  ],
+  "codeData": {
+    "comments": [],
+    "renames": []
+  },
+  "openTabs": [
+    {
+      "type": "class",
+      "tabPath": "com.ttzgame.pay.a",
+      "subPath": "java",
+      "caret": 2585,
+      "view": {
+        "x": 0,
+        "y": 561
+      }
+    },
+    {
+      "type": "class",
+      "tabPath": "com.ttzgame.pay.b",
+      "subPath": "java",
+      "caret": 625,
+      "view": {
+        "x": 0,
+        "y": 1271
+      }
+    }
+  ],
+  "activeTab": 0,
+  "cacheDir": "week 2 day3题目\\1qiantang.apk.cache",
+  "enableLiveReload": false,
+  "searchHistory": []
+}
