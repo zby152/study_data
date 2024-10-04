@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>Soft Landing Page by Tooplate</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="team" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../static/css/owl.carousel.css">
+     <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="../static/css/tooplate-style.css">
+     <style>
+    div {
+        margin-top: 20px; /* 在每个 div 上方留出空间 */
+        font-size: 18px; /* 增大字体大小 */
+        color: white; /* 字体颜色改为白色 */
+    }
+
+    /* 增大单选按钮的大小 */
+    input[type="radio"] {
+        width: 20px; /* 调整宽度 */
+        height: 20px; /* 调整高度 */
+        vertical-align: middle; /* 垂直居中 */
+    }
+</style>
+
+</head>
+<body >
+
+<!-- PRE LOADER -->
+<section class="preloader">
+     <div class="spinner">
+          <span class="spinner-rotate"></span>
+     </div>
+</section>
+
+<!-- MENU -->
+<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+     <div class="container">
+
+          <div class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+               </button>
+
+               <!-- lOGO TEXT HERE -->
+               <a href="index.html" class="navbar-brand">SM4加解密程序</a>
+          </div>
+
+          <!-- MENU LINKS -->
+          <div class="collapse navbar-collapse">
+               <ul class="nav navbar-nav">
+                         <li><a href="/" class="smoothScroll">SM4加密</a></li>
+                         <li><a href="/decode" class="smoothScroll">SM4解密</a></li>
+                    </ul>
+               <ul class="nav navbar-nav navbar-right">
+                    <li>
+                         <img src="../static/images/logomini1.png" alt="Description">
+                    </li>
+               </ul>
+          </div>
+
+     </div>
+</section>
+
+
+<!-- FEATURE -->
+<section id="home" data-stellar-background-ratio="0.5">
+     <div class="overlay"></div>
+     <div class="container">
+          <div class="row">
+               <div class="col-md-offset-3 col-md-6 col-sm-12 custom-height upper-container">
+                    <div class="home-info">
+                        <h1>SM4加密</h1>
+                         <form id="encryptionForm" action="/" method="post" enctype="multipart/form-data">
+                              <!-- 表单内容 -->
+
+                              <div class="file-upload-container">
+                                  <div class="custom-file-upload">
+                                      <label for="fileInput"></label>
+                                      <span class="custom-submit-button" id="file-upload-btn">选择文件</span>
+                                      <input type="file" id="fileInput" name="fileInput" required style="display: none;">
+                                      <div id="file-name-display"></div> <!-- 用于显示文件名的元素 -->
+                                  </div>
+                              </div>
+
+                              <div class="key-input-section">
+                                  <label for="keyInput">输入密钥：</label>
+                                  <input type="text" id="keyInput" name="keyInput" required>
+                              </div>
+
+
+                              <div>
+                                   <label>选择工作方式：</label>
+                                   <input type="radio" id="modeECB" name="mode" value="ECB" checked>
+                                   <label for="modeECB">ECB</label>
+                                   <input type="radio" id="modeCBC" name="mode" value="CBC">
+                                   <label for="modeCBC">CBC</label>
+                              </div>
+
+                              <div>
+                                   <label>选择短块填充方式：</label>
+                                   <input type="radio" id="modePAD" name="block_mode" value="PAD" checked>
+                                   <label for="modePAD">PAD</label>
+                                   <input type="radio" id="modeSTE" name="block_mode" value="STE">
+                                   <label for="modeSTE">STE</label>
+                              </div>
+
+                              <button type="submit"  class="custom-submit-button">
+                                   加密
+                              </button>
+
+
+
+
+                         </form>
+
+                    </div>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<!-- SCRIPTS -->
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.stellar.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script src="../static/js/smoothscroll.js"></script>
+<script src="../static/js/custom.js"></script>
+
+
+<script>
+    document.getElementById('file-upload-btn').onclick = function() {
+        document.getElementById('fileInput').click();
+    };
+
+    document.getElementById('fileInput').onchange = function() {
+        var fileName = this.files[0].name;
+        document.getElementById('file-name-display').innerText = fileName;
+    };
+</script>
+
+
+</body>
+</html>
+
+
